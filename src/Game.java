@@ -2,14 +2,14 @@ import java.util.*;
 public class Game {
     public static void main(String[] args){
         Grid grid = new Grid(); //instantiates your game board.
-        Player player = new Player(1,1);
-        Monster monster = new Monster(9,8);
+        Player player = new Player(1,0); //spawn elmeen
+        Monster monster = new Monster(9,9);
         Scanner sc = new Scanner(System.in);
 
         while(true){
             grid.render(player,monster);
 
-            if(player.pos.equals(new Position(14,13))){
+            if(player.pos.equals(new Position(14,13))){ //koordinat finish
                 System.out.println("YOU WIN!");
                 break;
             }
@@ -24,7 +24,5 @@ public class Game {
             monster.moveTowards(player, grid);
             System.out.println();
         }
-
-        sc.close();
     }
 }

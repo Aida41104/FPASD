@@ -35,8 +35,8 @@ class Grid {
     // Traps: Toxic Green (Slime or Poison)
     public static final String TRAP_COLOR = "\u001B[32m";
 
-    private List<Position> activeTraps = new ArrayList<>();
-    private Map<Position, Trap> trapQuestions = new HashMap<>();
+    private List<Position> activeTraps = new ArrayList<>(); //list koordinat trap
+    private Map<Position, Trap> trapQuestions = new HashMap<>(); //koordinat trap ditentuin dulu, Q nanti
     private List<String[]> questionBank = Arrays.asList(
             new String[]{"Apakah binary tree selalu memiliki maksimal 2 anak per node? (y/n)","y"},
             new String[]{"DFS mengeksplorasi node berdasarkan level sebelum menyelam lebih dalam. Benar? (y/n)","n"},
@@ -59,7 +59,7 @@ class Grid {
     public boolean isWalkable(int x,int y){
 
         return x>=0 && y>=0 && x<ROW && y<COL && grid[x][y]!='|'
-                ;
+                ; //xy gaboleh negatif n harus di dalem row col n xy ga boleh = |
     }
 
     public void render(Player player, Monster monster){
@@ -71,7 +71,7 @@ class Grid {
 
                 // 1. Player (Ghostly Cyan)
                 // We use "@ " to keep it 2 chars wide like the walls
-                if(player.pos.x == i && player.pos.y == j) {
+                if(player.pos.x == i && player.pos.y == j) { //koor grid = player = true
                     System.out.print(PLAYER_COLOR + "<>" + RESET);
                 }
 
@@ -101,39 +101,53 @@ class Grid {
         }
     }
 
-    public boolean isTrap(int x,int y){
-        for(Position t:activeTraps) if(t.x==x && t.y==y) return true;
+    public boolean isTrap(int x,int y) { //cek apakah posisi itu posisi traap
+        for (int i = 0; i < activeTraps.size(); i++) {
+            Position t = activeTraps.get(i); //ngecek 1 1 trap
+            if (t.x == x && t.y == y) {
+                return true; //berarti itu trap di posisi itu
+            }
+        }
         return false;
     }
 
+    //atas → kalau bisa, taruh trap di situ
+    //kalau tidak bisa → coba bawah
+    //kalau tidak bisa → coba kiri
+    //kalau tidak bisa → coba kanan
     public void spawnTrap(Player player){
-        int[][] dirs = {{-1,0},{1,0},{0,-1},{0,1}};
-        for(int[] d: dirs){
-            int nx = player.pos.x + d[0]*3;
-            int ny = player.pos.y + d[1]*3;
-            if(nx>=0 && ny>=0 && nx<ROW && ny<COL && isWalkable(nx,ny) && !isTrap(nx,ny)){
-                Position trapPos = new Position(nx,ny);
-                String[] qa = questionBank.get(new Random().nextInt(questionBank.size()));
-                trapQuestions.put(trapPos, new Trap(qa[0], qa[1]));
-                activeTraps.add(trapPos);
-                return; // spawn 1 trap per turn
+        int[][] dirs = {{-1,0},{1,0},{0,-1},{0,1}}; // atas bawah kiri kanan trap
+        for(int i = 0; i < dirs.length; i++) {
+            int[] d = dirs[i]; // ambil arah ke-i
+
+            int nx = player.pos.x + d[0] * 3; //misal i 0, -1*3 = -3
+            int ny = player.pos.y + d[1] * 3;
+
+            if(nx >= 0 && ny >= 0 && nx < ROW && ny < COL && isWalkable(nx, ny) && !isTrap(nx, ny)) { //koor gblh -, row col smape 14,dll)
+                Position trapPos = new Position(nx, ny); //spawn
+                String[] qa = questionBank.get(new Random().nextInt(questionBank.size())); //bikin angka dari 0 sampai 14, angka random misal = 5 = ambil pertanyaan ke 5.
+                trapQuestions.put(trapPos, new Trap(qa[0], qa[1])); //trapPos, qna & qa[0] = pertanyaan qa[1] = jawaban
+                activeTraps.add(trapPos); // + trap itu ke daftar trap
+                return;
             }
         }
     }
 
-    public void checkTrap(Player player, Scanner sc){
-        Iterator<Position> it = activeTraps.iterator();
-        while(it.hasNext()){
-            Position trap = it.next();
-            if(trap.equals(player.pos)){
-                it.remove();
-                Trap t = trapQuestions.remove(trap);
-                System.out.println("Trap Question: "+t.question);
-                String ans = sc.nextLine().toLowerCase();
-                if(!ans.equals(t.answer)){
-                    player.skipTurn = true; // skip turn
-                    System.out.println("turn berikutnya terlewat!");
-                } else System.out.println("Jawaban benar! Lanjut...");
+    public void checkTrap(Player player, Scanner sc) {
+        for(int i = activeTraps.size() - 1; i >= 0; i--) { //biar bisa diapus pas kita dah lewat
+            Position trap = activeTraps.get(i);
+
+            if(trap.equals(player.pos)) { // kalau player menginjak posisi trap
+                activeTraps.remove(i); //visual trap
+                Trap t = trapQuestions.remove(trap);//apus trap n Q nya biar dirimu ga kena pertanyaan terus
+                System.out.println("Trap Question: " + t.question);
+                String ans = sc.nextLine().toLowerCase(); // baca answer
+                if(!ans.equals(t.answer)) {
+                    player.skipTurn = true;
+                    System.out.println("Kamu salah jawab, turn berikutnya terlewat!");
+                } else {
+                    System.out.println("Jawaban benar! Lanjut...");
+                }
             }
         }
     }
