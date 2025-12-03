@@ -1,7 +1,7 @@
 import java.util.*;
 public class Game {
     public static void main(String[] args){
-        Grid grid = new Grid();
+        Grid grid = new Grid(); //instantiates your game board.
         Player player = new Player(1,1);
         Monster monster = new Monster(9,8);
         Scanner sc = new Scanner(System.in);

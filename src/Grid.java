@@ -20,8 +20,23 @@ class Grid {
 
     };
 
-    private List<Position> activeTraps = new ArrayList<>(); //list koordinat trap
-    private Map<Position, Trap> trapQuestions = new HashMap<>(); //koordinat trap ditentuin dulu, Q nanti
+    // Horror Theme Constants
+    public static final String RESET = "\u001B[0m";
+
+    // Player: A bright, ghostly cyan (like a lost soul)
+    public static final String PLAYER_COLOR = "\u001B[1;96m";
+
+    // Monster: Red Background with Black Text (Intense contrast)
+    public static final String MONSTER_COLOR = "\u001B[41m\u001B[30m";
+
+    // Walls: Dim Purple/Magenta (Unnatural, eerie environment)
+    public static final String WALL_COLOR = "\u001B[35m";
+
+    // Traps: Toxic Green (Slime or Poison)
+    public static final String TRAP_COLOR = "\u001B[32m";
+
+    private List<Position> activeTraps = new ArrayList<>();
+    private Map<Position, Trap> trapQuestions = new HashMap<>();
     private List<String[]> questionBank = Arrays.asList(
             new String[]{"Apakah binary tree selalu memiliki maksimal 2 anak per node? (y/n)","y"},
             new String[]{"DFS mengeksplorasi node berdasarkan level sebelum menyelam lebih dalam. Benar? (y/n)","n"},
@@ -43,35 +58,56 @@ class Grid {
 
     public boolean isWalkable(int x,int y){
 
-        return x>=0 && y>=0 && x<ROW && y<COL && grid[x][y]!='|' //xy gaboleh negatif n harus di dalem row col n xy ga boleh = |
+        return x>=0 && y>=0 && x<ROW && y<COL && grid[x][y]!='|'
                 ;
     }
 
     public void render(Player player, Monster monster){
-        for(int i=0;i<ROW;i++){
-            for(int j=0;j<COL;j++){
-                if(player.pos.x==i && player.pos.y==j) System.out.print("O "); //koor grid = player = true
-                else if(monster.pos.x==i && monster.pos.y==j) System.out.print("X ");
-                else if(isTrap(i,j)) System.out.print("T ");
-                else System.out.print(grid[i][j]+" ");
+        // Unicode for a solid block
+        final String BLOCK = "\u2588\u2588";
+
+        for(int i = 0; i < ROW; i++){
+            for(int j = 0; j < COL; j++){
+
+                // 1. Player (Ghostly Cyan)
+                // We use "@ " to keep it 2 chars wide like the walls
+                if(player.pos.x == i && player.pos.y == j) {
+                    System.out.print(PLAYER_COLOR + "<>" + RESET);
+                }
+
+                // 2. Monster (Red Background)
+                // "M " is 2 chars wide
+                else if(monster.pos.x == i && monster.pos.y == j) {
+                    System.out.print(MONSTER_COLOR + "XX" + RESET);
+                }
+
+                // 3. Trap (Green Spikes)
+                else if(isTrap(i, j)) {
+                    System.out.print(TRAP_COLOR + "^^" + RESET);
+                }
+
+                // 4. Walls vs Empty Space
+                else {
+                    if(grid[i][j] == '|') {
+                        // This prints two solid blocks side-by-side
+                        System.out.print(WALL_COLOR + BLOCK + RESET);
+                    } else {
+                        // Two spaces to match the width of the blocks
+                        System.out.print("  ");
+                    }
+                }
             }
             System.out.println();
         }
     }
 
-    public boolean isTrap(int x,int y) { //cek apakah posisi itu posisi traap
-        for (int i = 0; i < activeTraps.size(); i++) {
-            Position t = activeTraps.get(i); //ngecek 1 1 trap
-            if (t.x == x && t.y == y) {
-                return true; //berarti itu trap di posisi itu
-            }
-        }
+    public boolean isTrap(int x,int y){
+        for(Position t:activeTraps) if(t.x==x && t.y==y) return true;
         return false;
     }
 
-
     public void spawnTrap(Player player){
-        int[][] dirs = {{-1,0},{1,0},{0,-1},{0,1}}; //arah gerakan
+        int[][] dirs = {{-1,0},{1,0},{0,-1},{0,1}};
         for(int[] d: dirs){
             int nx = player.pos.x + d[0]*3;
             int ny = player.pos.y + d[1]*3;
