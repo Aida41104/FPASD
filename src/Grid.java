@@ -20,8 +20,8 @@ class Grid {
 
     };
 
-    private List<Position> activeTraps = new ArrayList<>();
-    private Map<Position, Trap> trapQuestions = new HashMap<>();
+    private List<Position> activeTraps = new ArrayList<>(); //list koordinat trap
+    private Map<Position, Trap> trapQuestions = new HashMap<>(); //koordinat trap ditentuin dulu, Q nanti
     private List<String[]> questionBank = Arrays.asList(
             new String[]{"Apakah binary tree selalu memiliki maksimal 2 anak per node? (y/n)","y"},
             new String[]{"DFS mengeksplorasi node berdasarkan level sebelum menyelam lebih dalam. Benar? (y/n)","n"},
@@ -43,14 +43,14 @@ class Grid {
 
     public boolean isWalkable(int x,int y){
 
-        return x>=0 && y>=0 && x<ROW && y<COL && grid[x][y]!='|'
+        return x>=0 && y>=0 && x<ROW && y<COL && grid[x][y]!='|' //xy gaboleh negatif n harus di dalem row col n xy ga boleh = |
                 ;
     }
 
     public void render(Player player, Monster monster){
         for(int i=0;i<ROW;i++){
             for(int j=0;j<COL;j++){
-                if(player.pos.x==i && player.pos.y==j) System.out.print("O ");
+                if(player.pos.x==i && player.pos.y==j) System.out.print("O "); //koor grid = player = true
                 else if(monster.pos.x==i && monster.pos.y==j) System.out.print("X ");
                 else if(isTrap(i,j)) System.out.print("T ");
                 else System.out.print(grid[i][j]+" ");
@@ -59,13 +59,19 @@ class Grid {
         }
     }
 
-    public boolean isTrap(int x,int y){
-        for(Position t:activeTraps) if(t.x==x && t.y==y) return true;
+    public boolean isTrap(int x,int y) { //cek apakah posisi itu posisi traap
+        for (int i = 0; i < activeTraps.size(); i++) {
+            Position t = activeTraps.get(i); //ngecek 1 1 trap
+            if (t.x == x && t.y == y) {
+                return true; //berarti itu trap di posisi itu
+            }
+        }
         return false;
     }
 
+
     public void spawnTrap(Player player){
-        int[][] dirs = {{-1,0},{1,0},{0,-1},{0,1}};
+        int[][] dirs = {{-1,0},{1,0},{0,-1},{0,1}}; //arah gerakan
         for(int[] d: dirs){
             int nx = player.pos.x + d[0]*3;
             int ny = player.pos.y + d[1]*3;
