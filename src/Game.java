@@ -14,7 +14,7 @@ public class Game {
                 break;
             }
             if(player.pos.equals(monster.pos)){
-                System.out.println("YOU LOSE! Monster menang!");
+                System.out.println("MONSTER MENANGKAPMU!! YOU LOSE!");
                 break;
             }
 
