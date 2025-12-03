@@ -61,31 +61,37 @@ class Grid {
     }
 
     public void render(Player player, Monster monster){
+        // Unicode for a solid block
+        final String BLOCK = "\u2588\u2588";
+
         for(int i = 0; i < ROW; i++){
             for(int j = 0; j < COL; j++){
 
-                // 1. Player: Represented as a 'Soul' (@)
+                // 1. Player (Ghostly Cyan)
+                // We use "@ " to keep it 2 chars wide like the walls
                 if(player.pos.x == i && player.pos.y == j) {
-                    System.out.print(PLAYER_COLOR + "@ " + RESET);
+                    System.out.print(PLAYER_COLOR + "<>" + RESET);
                 }
 
-                // 2. Monster: Represented as a solid block or a sharp character (M)
-                // The background color will make this tile look like a "warning light"
+                // 2. Monster (Red Background)
+                // "M " is 2 chars wide
                 else if(monster.pos.x == i && monster.pos.y == j) {
-                    System.out.print(MONSTER_COLOR + "M " + RESET);
+                    System.out.print(MONSTER_COLOR + "XX" + RESET);
                 }
 
-                // 3. Trap: Represented as a spike (^)
+                // 3. Trap (Green Spikes)
                 else if(isTrap(i, j)) {
-                    System.out.print(TRAP_COLOR + "^ " + RESET);
+                    System.out.print(TRAP_COLOR + "^^" + RESET);
                 }
 
-                // 4. Walls
+                // 4. Walls vs Empty Space
                 else {
                     if(grid[i][j] == '|') {
-                        System.out.print(WALL_COLOR + "¦ " + RESET); // Changed '|' to broken bar '¦' for texture
+                        // This prints two solid blocks side-by-side
+                        System.out.print(WALL_COLOR + BLOCK + RESET);
                     } else {
-                        System.out.print("  "); // Empty space (Darkness)
+                        // Two spaces to match the width of the blocks
+                        System.out.print("  ");
                     }
                 }
             }
