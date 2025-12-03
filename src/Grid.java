@@ -20,6 +20,21 @@ class Grid {
 
     };
 
+    // Horror Theme Constants
+    public static final String RESET = "\u001B[0m";
+
+    // Player: A bright, ghostly cyan (like a lost soul)
+    public static final String PLAYER_COLOR = "\u001B[1;96m";
+
+    // Monster: Red Background with Black Text (Intense contrast)
+    public static final String MONSTER_COLOR = "\u001B[41m\u001B[30m";
+
+    // Walls: Dim Purple/Magenta (Unnatural, eerie environment)
+    public static final String WALL_COLOR = "\u001B[35m";
+
+    // Traps: Toxic Green (Slime or Poison)
+    public static final String TRAP_COLOR = "\u001B[32m";
+
     private List<Position> activeTraps = new ArrayList<>();
     private Map<Position, Trap> trapQuestions = new HashMap<>();
     private List<String[]> questionBank = Arrays.asList(
@@ -46,12 +61,33 @@ class Grid {
     }
 
     public void render(Player player, Monster monster){
-        for(int i=0;i<ROW;i++){
-            for(int j=0;j<COL;j++){
-                if(player.pos.x==i && player.pos.y==j) System.out.print("O ");
-                else if(monster.pos.x==i && monster.pos.y==j) System.out.print("X ");
-                else if(isTrap(i,j)) System.out.print("T ");
-                else System.out.print(grid[i][j]+" ");
+        for(int i = 0; i < ROW; i++){
+            for(int j = 0; j < COL; j++){
+
+                // 1. Player: Represented as a 'Soul' (@)
+                if(player.pos.x == i && player.pos.y == j) {
+                    System.out.print(PLAYER_COLOR + "@ " + RESET);
+                }
+
+                // 2. Monster: Represented as a solid block or a sharp character (M)
+                // The background color will make this tile look like a "warning light"
+                else if(monster.pos.x == i && monster.pos.y == j) {
+                    System.out.print(MONSTER_COLOR + "M " + RESET);
+                }
+
+                // 3. Trap: Represented as a spike (^)
+                else if(isTrap(i, j)) {
+                    System.out.print(TRAP_COLOR + "^ " + RESET);
+                }
+
+                // 4. Walls
+                else {
+                    if(grid[i][j] == '|') {
+                        System.out.print(WALL_COLOR + "¦ " + RESET); // Changed '|' to broken bar '¦' for texture
+                    } else {
+                        System.out.print("  "); // Empty space (Darkness)
+                    }
+                }
             }
             System.out.println();
         }
