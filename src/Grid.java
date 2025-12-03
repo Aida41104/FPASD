@@ -1,6 +1,6 @@
 import java.util.*;
 class Grid {
-    public static final int ROW = 15, COL = 15;
+    public static final int ROW = 15, COL = 15; //grid nya 15 x 15
     public char[][] grid = {
             {'|','|','|','|','|','|','|','|','|','|','|','|','|','|','|'},
             {' ',' ',' ',' ',' ','|',' ',' ',' ',' ',' ',' ',' ',' ','|'},
@@ -42,7 +42,9 @@ class Grid {
     );
 
     public boolean isWalkable(int x,int y){
-        return x>=0 && y>=0 && x<ROW && y<COL && grid[x][y]!='|';
+
+        return x>=0 && y>=0 && x<ROW && y<COL && grid[x][y]!='|'
+                ;
     }
 
     public void render(Player player, Monster monster){
