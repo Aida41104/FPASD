@@ -11,7 +11,7 @@ class Player {
 
     public void move(Grid grid){
         if(skipTurn){ //klo salah jawab trap bakal skip turn
-            System.out.println("KAMU SALAH JAWAB, YAHAAA GA BISA JALAN!");
+            System.out.println("Dr. Arkam: \"Salah!! Tampaknya otakmu membeku! Kau kehilangan satu giliran.\"");
             skipTurn = false;
             return;
         }

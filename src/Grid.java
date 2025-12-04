@@ -140,13 +140,12 @@ class Grid {
             if(trap.equals(player.pos)) { // kalau player menginjak posisi trap
                 activeTraps.remove(i); //visual trap
                 Trap t = trapQuestions.remove(trap);//apus trap n Q nya biar dirimu ga kena pertanyaan terus
-                System.out.println("Trap Question: " + t.question);
+                System.out.println("Dr. Arkam: \"Jawab ini, jika otakmu masih berfungsi...\"\nTrap Question: " + t.question);
                 String ans = sc.nextLine().toLowerCase(); // baca answer
                 if(!ans.equals(t.answer)) {
                     player.skipTurn = true;
-                    System.out.println("Kamu salah jawab, turn berikutnya terlewat!");
                 } else {
-                    System.out.println("Jawaban benar! Lanjut...");
+                    System.out.println("Dr. Arkam: \"Hmm...jawabanmu benar. Baiklah, jebakan itu kulepas.\"");
                 }
             }
         }
