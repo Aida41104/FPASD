@@ -20,19 +20,19 @@ class Grid {
 
     };
 
-    // Horror Theme Constants
+    // horror but colorful atheme constants
     public static final String RESET = "\u001B[0m";
 
-    // Player: A bright, ghostly cyan (like a lost soul)
+    // player: a bright, ghostly cyan (like a lost soul)
     public static final String PLAYER_COLOR = "\u001B[1;96m";
 
-    // Monster: Red Background with Black Text (Intense contrast)
+    // monster: red background with black text (intense contrast)
     public static final String MONSTER_COLOR = "\u001B[41m\u001B[30m";
 
-    // Walls: Dim Purple/Magenta (Unnatural, eerie environment)
+    // walls: dim purple/magenta (for an unnatural & eerie environment)
     public static final String WALL_COLOR = "\u001B[35m";
 
-    // Traps: Toxic Green (Slime or Poison)
+    // traps: Toxic Green (slime or poison)
     public static final String TRAP_COLOR = "\u001B[32m";
 
     private List<Position> activeTraps = new ArrayList<>(); //list koordinat trap
@@ -63,36 +63,36 @@ class Grid {
     }
 
     public void render(Player player, Monster monster){
-        // Unicode for a solid block
+        // unicode for a solid block
         final String BLOCK = "\u2588\u2588";
 
         for(int i = 0; i < ROW; i++){
             for(int j = 0; j < COL; j++){
 
-                // 1. Player (Ghostly Cyan)
-                // We use "@ " to keep it 2 chars wide like the walls
+                // player (ghostly cyan)
+                // we used "@ " to keep it 2 chars wide like the walls so it'd be visible
                 if(player.pos.x == i && player.pos.y == j) { //koor grid = player = true
                     System.out.print(PLAYER_COLOR + "<>" + RESET);
                 }
 
-                // 2. Monster (Red Background)
+                // monster (Red)
                 // "M " is 2 chars wide
                 else if(monster.pos.x == i && monster.pos.y == j) {
                     System.out.print(MONSTER_COLOR + "XX" + RESET);
                 }
 
-                // 3. Trap (Green Spikes)
+                // trap (green spikes or bats)
                 else if(isTrap(i, j)) {
                     System.out.print(TRAP_COLOR + "^^" + RESET);
                 }
 
-                // 4. Walls vs Empty Space
+                // walls vs empty space
                 else {
                     if(grid[i][j] == '|') {
-                        // This prints two solid blocks side-by-side
+                        // this prints two solid blocks side-by-side
                         System.out.print(WALL_COLOR + BLOCK + RESET);
                     } else {
-                        // Two spaces to match the width of the blocks
+                        // two spaces to match the width of the blocks
                         System.out.print("  ");
                     }
                 }
@@ -149,10 +149,5 @@ class Grid {
                 }
             }
         }
-    }
-
-    public String getTrapAnswer(Position pos){
-        Trap t = trapQuestions.get(pos);
-        return t==null? null : t.answer;
     }
 }
