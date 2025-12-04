@@ -34,7 +34,7 @@ public class Game {
             }
 
             if(player.pos.equals(new Position(14,13))){ //koordinat finish
-                System.out.println("YOU WIN!!!!!!! \nDr. Arkam: \"Selamat otakmu layak untuk hidup!\"");
+                System.out.println("YOU WIN!!!!!!! \nDr. Arkam: \"Selamat otakmu layak untuk hidupd!\"");
                 break;
             }
             if(player.pos.equals(monster.pos)){
