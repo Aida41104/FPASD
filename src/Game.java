@@ -59,7 +59,6 @@ public class Game {
             //hitung ulang fog setelah semua bergerak
             grid.aturCahaya(player, langkah);
 
-
             langkah++;
             System.out.println();
         }
