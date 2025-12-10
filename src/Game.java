@@ -56,8 +56,8 @@ public class Game {
             grid.checkTrap(player, sc); //player nginjek trap ga?
             monster.moveTowards(player, grid); // m grk 1 langkah
 
-            //hitung ulang fog setelah semua bergerak
-            grid.aturCahaya(player, langkah);
+            grid.aturCahaya(player, langkah);//hitung ulang fog setelah semua bergerak
+
 
             langkah++;
             System.out.println();
