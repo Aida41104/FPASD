@@ -2,6 +2,12 @@ import java.util.*;
 class Grid {
     public static final int ROW = 15, COL = 15; //grid nya 15 x 15
     boolean[][] visible;
+    boolean[][] pernahTerlihat = new boolean[15][15];
+    public static final String FOG_LIGHT  = "\u001B[38;5;240m░░";
+    public static final String FOG_MEDIUM = "\u001B[38;5;238m▒▒";
+    public static final String FOG_DARK   = "\u001B[38;5;235m▓▓";
+
+
     public char[][] grid = {
             {'|','|','|','|','|','|','|','|','|','|','|','|','|','|','|'},
             {' ',' ',' ',' ',' ','|',' ',' ',' ',' ',' ',' ',' ',' ','|'},
@@ -23,6 +29,7 @@ class Grid {
 
     public Grid() {
         visible = new boolean[ROW][COL];
+
 
         // default: semua jadi true biar turn pertama tidak fog
         for(int i = 0; i < ROW; i++){
@@ -47,18 +54,16 @@ class Grid {
     // traps: Toxic Green (slime or poison)
     public static final String TRAP_COLOR = "\u001B[32m";
 
-    // penyimpanan visibilitas map
-    boolean[][] light = new boolean[ROW][COL];
 
     void gelapkanSemua() {
         for (int i = 0; i < ROW; i++) {
-            Arrays.fill(light[i], false);
+            Arrays.fill(visible[i], false);
         }
     }
 
     void bukaPetaTotal() {
         for (int i = 0; i < ROW; i++) {
-            Arrays.fill(light[i], true);
+            Arrays.fill(visible[i], true);
         }
     }
 
@@ -67,8 +72,8 @@ class Grid {
         if(x < 0 || x >= ROW || y < 0 || y >= COL) return;
         if(visited[x][y]) return;
 
-        visited[x][y] = true;
-        light[x][y] = true;
+        visible[x][y] = true;
+        pernahTerlihat[x][y] = true;
 
         if(grid[x][y] == '|') return; // wall terlihat tapi tidak ditembus
 
@@ -87,6 +92,7 @@ class Grid {
             bukaPetaTotal();  // light[][] = true semua
             return;
         }
+
 
         // TURN LAIN → radius 5
         gelapkanSemua(); // light[][] = false semua
@@ -126,50 +132,74 @@ class Grid {
                 ; //xy gaboleh negatif n harus di dalem row col n xy ga boleh = |
     }
 
-    public void render(Player player, Monster monster){
-        // unicode for a solid block
+    public void render(Player player, Monster monster, int langkah){
         final String BLOCK = "\u2588\u2588";
 
         for(int i = 0; i < ROW; i++){
             for(int j = 0; j < COL; j++){
 
-                // player (ghostly cyan)
-                // we used "@ " to keep it 2 chars wide like the walls so it'd be visible
-                if(player.pos.x == i && player.pos.y == j) { //koor grid = player = true
+                // ====== MONSTER DICEK PALING AWAL ======
+                if (monster.pos.x == i && monster.pos.y == j) {
+
+                    if (visible[i][j]) {
+                        // Monster terlihat jelas
+                        System.out.print(MONSTER_COLOR + "XX" + RESET);
+                    }
+                    else if (pernahTerlihat[i][j]) {
+                        // Monster dalam fog tapi pernah terlihat → siluet
+                        System.out.print("\u001B[31m░░" + RESET);
+                    }
+                    else {
+                        // Monster dalam fog dan belum pernah terlihat → fog hitam
+                        System.out.print(FOG_DARK + "  " + RESET);
+                    }
+
+                    continue;
+                }
+
+                // ====== FOG UNTUK TILE NON-MONSTER ======
+                if (!visible[i][j]) {
+
+                    int level = langkah % 3;
+                    String fogColor = switch(level) {
+                        case 0 -> FOG_DARK;
+                        case 1 -> FOG_MEDIUM;
+                        case 2 -> FOG_LIGHT;
+                        default -> FOG_DARK;
+                    };
+
+                    System.out.print(fogColor + RESET);
+                    continue;
+                }
+
+                // ====== TILE TERLIHAT NORMAL ======
+
+                // Player
+                if(player.pos.x == i && player.pos.y == j) {
                     System.out.print(PLAYER_COLOR + "<>" + RESET);
                 }
 
-                // monster (Red)
-                // "M " is 2 chars wide
-                else if(monster.pos.x == i && monster.pos.y == j) {
-                    System.out.print(MONSTER_COLOR + "XX" + RESET);
-                }
-
-                // trap (green spikes or bats)
+                // Trap
                 else if(isTrap(i, j)) {
                     System.out.print(TRAP_COLOR + "^^" + RESET);
                 }
 
-                // walls vs empty space
-                else {
-
-                    if (!light[i][j]) {
-                        // tile gelap (fog)
-                        System.out.print("\u001B[90m" + BLOCK + RESET);
-                        continue;
-                    }
-
-                    if(grid[i][j] == '|') {
-                        System.out.print(WALL_COLOR + BLOCK + RESET);
-                    } else {
-                        System.out.print("  ");
-                    }
+                // Wall
+                else if(grid[i][j] == '|') {
+                    System.out.print(WALL_COLOR + BLOCK + RESET);
                 }
 
+                // Kosong
+                else {
+                    System.out.print("  ");
+                }
             }
+
             System.out.println();
         }
     }
+
+
 
     public boolean isTrap(int x,int y) { //cek apakah posisi itu posisi traap
         for (int i = 0; i < activeTraps.size(); i++) {

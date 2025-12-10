@@ -30,7 +30,7 @@ public class Game {
         while(true){
             grid.aturCahaya(player, langkah);
 
-            grid.render(player,monster); //visual player n monster
+            grid.render(player,monster, langkah); //visual player n monster
 
             if(!ready){
                 System.out.println("\n\nDr. Arkam: \"Selamat datang, subjek uji coba baru...\"\n" +
@@ -50,10 +50,14 @@ public class Game {
                 break;
             }
 
+
             grid.spawnTrap(player); //spawn trap. misal Player di (5,5) Trap muncul di (5,8)
             player.move(grid);//wasd gerak
             grid.checkTrap(player, sc); //player nginjek trap ga?
             monster.moveTowards(player, grid); // m grk 1 langkah
+
+            //hitung ulang fog setelah semua bergerak
+            grid.aturCahaya(player, langkah);
 
 
             langkah++;
