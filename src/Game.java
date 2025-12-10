@@ -7,6 +7,7 @@ public class Game {
         Scanner sc = new Scanner(System.in); //y/n
         boolean storyShown = false;
         boolean ready = false;
+        int turn = 1;
         if(!storyShown){
             System.out.println("\n \nDr. Arkam dulunya adalah ilmuwan jenius yang terobsesi menciptakan “otak sempurna”.\n" +
                     "Ia percaya bahwa kecerdasan manusia terlalu mudah rapuh, terlalu emosional, dan terlalu mudah salah.\n" +
@@ -47,7 +48,13 @@ public class Game {
             grid.spawnTrap(player); //spawn trap. misal Player di (5,5) Trap muncul di (5,8)
             player.move(grid);//wasd gerak
             grid.checkTrap(player, sc); //player nginjek trap ga?
+            grid.updateFog(player, turn);
             monster.moveTowards(player, grid); // m grk 1 langkah
+            grid.render(player, monster);
+
+            turn++;
+
+
             System.out.println();
         }
     }

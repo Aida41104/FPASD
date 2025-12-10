@@ -35,6 +35,51 @@ class Grid {
     // traps: Toxic Green (slime or poison)
     public static final String TRAP_COLOR = "\u001B[32m";
 
+    // Fog-of-war visibility matrix
+    public boolean[][] visible = new boolean[ROW][COL];
+
+    public void resetVisibility() {
+        for (int i = 0; i < ROW; i++) {
+            for (int j = 0; j < COL; j++) {
+                visible[i][j] = false;
+            }
+        }
+    }
+
+    public void dfsReveal(int x, int y, int depth, boolean[][] visited) {
+        if (depth < 0) return;
+        if (x < 0 || y < 0 || x >= ROW || y >= COL) return;
+        if (visited[x][y]) return;
+
+        visited[x][y] = true;
+        visible[x][y] = true;
+
+        // stop masuk ke dalam wall, tapi tetap terlihat
+        if (grid[x][y] == '|') return;
+
+        dfsReveal(x+1, y, depth-1, visited);
+        dfsReveal(x-1, y, depth-1, visited);
+        dfsReveal(x, y+1, depth-1, visited);
+        dfsReveal(x, y-1, depth-1, visited);
+    }
+
+    public void updateFog(Player player, int turn) {
+
+        // turn 1 dan kelipatan 5 → semua nampak
+        if (turn == 1 || turn % 5 == 0) {
+            for (int i = 0; i < ROW; i++)
+                for (int j = 0; j < COL; j++)
+                    visible[i][j] = true;
+            return;
+        }
+
+        // selain itu → radius 5
+        resetVisibility();
+        boolean[][] visited = new boolean[ROW][COL];
+        dfsReveal(player.pos.x, player.pos.y, 5, visited);
+    }
+
+
     private List<Position> activeTraps = new ArrayList<>(); //list koordinat trap
     private Map<Position, Trap> trapQuestions = new HashMap<>(); //koordinat trap ditentuin dulu, Q nanti
     private List<String[]> questionBank = Arrays.asList(
@@ -68,6 +113,11 @@ class Grid {
 
         for(int i = 0; i < ROW; i++){
             for(int j = 0; j < COL; j++){
+
+                if (!visible[i][j]) {
+                    System.out.print("\u001B[90m▒▒" + RESET); // dark fog
+                    continue;
+                }
 
                 // player (ghostly cyan)
                 // we used "@ " to keep it 2 chars wide like the walls so it'd be visible
