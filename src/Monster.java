@@ -3,7 +3,6 @@ import java.util.*;
 public class Monster {
     Position pos;
 
-    //spawn monster rawrrrn
     public Monster(int x, int y) {
         pos = new Position(x,y);
     }
