@@ -48,11 +48,8 @@ public class Game {
             grid.spawnTrap(player); //spawn trap. misal Player di (5,5) Trap muncul di (5,8)
             player.move(grid);//wasd gerak
             grid.checkTrap(player, sc); //player nginjek trap ga?
-            grid.updateFog(player, turn);
             monster.moveTowards(player, grid); // m grk 1 langkah
             grid.render(player, monster);
-
-            turn++;
 
 
             System.out.println();
