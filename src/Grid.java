@@ -1,6 +1,7 @@
 import java.util.*;
 class Grid {
     public static final int ROW = 15, COL = 15; //grid nya 15 x 15
+    boolean[][] visible;
     public char[][] grid = {
             {'|','|','|','|','|','|','|','|','|','|','|','|','|','|','|'},
             {' ',' ',' ',' ',' ','|',' ',' ',' ',' ',' ',' ',' ',' ','|'},
@@ -20,6 +21,17 @@ class Grid {
 
     };
 
+    public Grid() {
+        visible = new boolean[ROW][COL];
+
+        // default: semua jadi true biar turn pertama tidak fog
+        for(int i = 0; i < ROW; i++){
+            for(int j = 0; j < COL; j++){
+                visible[i][j] = true;
+            }
+        }
+    }
+
     // horror but colorful atheme constants
     public static final String RESET = "\u001B[0m";
 
@@ -34,6 +46,58 @@ class Grid {
 
     // traps: Toxic Green (slime or poison)
     public static final String TRAP_COLOR = "\u001B[32m";
+
+    // penyimpanan visibilitas map
+    boolean[][] light = new boolean[ROW][COL];
+
+    void gelapkanSemua() {
+        for (int i = 0; i < ROW; i++) {
+            Arrays.fill(light[i], false);
+        }
+    }
+
+    void bukaPetaTotal() {
+        for (int i = 0; i < ROW; i++) {
+            Arrays.fill(light[i], true);
+        }
+    }
+
+    private void cahayaDFS(int x, int y, int depth, boolean[][] visited){
+        if(depth > 5) return;
+        if(x < 0 || x >= ROW || y < 0 || y >= COL) return;
+        if(visited[x][y]) return;
+
+        visited[x][y] = true;
+        light[x][y] = true;
+
+        if(grid[x][y] == '|') return; // wall terlihat tapi tidak ditembus
+
+        cahayaDFS(x+1, y, depth+1, visited);
+        cahayaDFS(x-1, y, depth+1, visited);
+        cahayaDFS(x, y+1, depth+1, visited);
+        cahayaDFS(x, y-1, depth+1, visited);
+    }
+
+
+
+    public void aturCahaya(Player player, int langkah){
+
+        // TURN 1 & TURN KELIPATAN 5 → FULL MAP
+        if(langkah == 1 || langkah % 5 == 0){
+            bukaPetaTotal();  // light[][] = true semua
+            return;
+        }
+
+        // TURN LAIN → radius 5
+        gelapkanSemua(); // light[][] = false semua
+
+        boolean[][] visited = new boolean[ROW][COL];
+        cahayaDFS(player.pos.x, player.pos.y, 0, visited);
+    }
+
+
+
+
 
     private List<Position> activeTraps = new ArrayList<>(); //list koordinat trap
     private Map<Position, Trap> trapQuestions = new HashMap<>(); //koordinat trap ditentuin dulu, Q nanti
@@ -88,14 +152,20 @@ class Grid {
 
                 // walls vs empty space
                 else {
+
+                    if (!light[i][j]) {
+                        // tile gelap (fog)
+                        System.out.print("\u001B[90m" + BLOCK + RESET);
+                        continue;
+                    }
+
                     if(grid[i][j] == '|') {
-                        // this prints two solid blocks side-by-side
                         System.out.print(WALL_COLOR + BLOCK + RESET);
                     } else {
-                        // two spaces to match the width of the blocks
                         System.out.print("  ");
                     }
                 }
+
             }
             System.out.println();
         }

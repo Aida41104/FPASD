@@ -1,13 +1,15 @@
 import java.util.*;
 public class Game {
     public static void main(String[] args){
+        int langkah = 1;
         Grid grid = new Grid(); //instantiates your game board.
         Player player = new Player(1,0); //spawn elmeen
         Monster monster = new Monster(9,9);
         Scanner sc = new Scanner(System.in); //y/n
+
         boolean storyShown = false;
         boolean ready = false;
-        int turn = 1;
+
         if(!storyShown){
             System.out.println("\n \nDr. Arkam dulunya adalah ilmuwan jenius yang terobsesi menciptakan “otak sempurna”.\n" +
                     "Ia percaya bahwa kecerdasan manusia terlalu mudah rapuh, terlalu emosional, dan terlalu mudah salah.\n" +
@@ -26,7 +28,10 @@ public class Game {
         }
 
         while(true){
+            grid.aturCahaya(player, langkah);
+
             grid.render(player,monster); //visual player n monster
+
             if(!ready){
                 System.out.println("\n\nDr. Arkam: \"Selamat datang, subjek uji coba baru...\"\n" +
                         "Dr. Arkam: \"Labirin Pengetahuan ini akan menguji apakah otakmu layak dipertahankan.\"\n" +
@@ -49,9 +54,9 @@ public class Game {
             player.move(grid);//wasd gerak
             grid.checkTrap(player, sc); //player nginjek trap ga?
             monster.moveTowards(player, grid); // m grk 1 langkah
-            grid.render(player, monster);
 
 
+            langkah++;
             System.out.println();
         }
     }
