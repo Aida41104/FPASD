@@ -1,6 +1,10 @@
 import java.util.*;
 public class Game {
     public static void main(String[] args){
+
+        // MULAI BACKSOUND
+        BackgroundMusic bg = new BackgroundMusic();
+
         int langkah = 1;
         Grid grid = new Grid(); //instantiates your game board.
         Player player = new Player(1,0); //spawn elmeen
