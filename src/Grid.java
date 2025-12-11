@@ -113,17 +113,10 @@ class Grid {
             new String[]{"BFS mengeksplorasi node sedalam mungkin sebelum pindah ke level berikutnya. Benar? (y/n)","n"},
             new String[]{"Queue mengikuti prinsip LIFO (Last In First Out). Benar? (y/n)","n"},
             new String[]{"Stack mengikuti prinsip FIFO (First In First Out). Benar? (y/n)","n"},
-            new String[]{"Apakah tree selalu memiliki siklus? (y/n)", "n"},
+            new String[]{"Apakah tree selalu medmiliki siklus? (y/n)", "n"},
             new String[]{"Apakah graph bisa bersifat terarah maupun tak terarah? (y/n)", "y"},
-            new String[]{"Linked list memungkinkan akses elemen secara langsung (random access). Benar? (y/n)", "n"},
             new String[]{"Queue cocok digunakan untuk BFS. Benar? (y/n)", "y"},
-            new String[]{"Stack cocok digunakan untuk DFS. Benar? (y/n)", "y"},
-            new String[]{"Binary Search hanya bekerja pada data yang sudah terurut. Benar? (y/n)", "y"},
-            new String[]{"Heap adalah struktur data yang selalu terurut secara penuh dari kiri ke kanan. Benar? (y/n)", "n"},
-            new String[]{"Merge Sort memiliki kompleksitas waktu O(n log n). Benar? (y/n)", "y"},
-            new String[]{"Bubble Sort selalu lebih cepat dari Insertion Sort. Benar? (y/n)", "n"},
-            new String[]{"Hash table dapat mengalami collision. Benar? (y/n)", "y"}
-
+            new String[]{"Stack cocok digunakan untuk DFS. Benar? (y/n)", "y"}
     );
 
     public boolean isWalkable(int x,int y){
