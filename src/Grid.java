@@ -43,7 +43,7 @@ class Grid {
     public static final String RESET = "\u001B[0m";
 
     // player: a bright, ghostly cyan (like a lost soul)
-    public static final String PLAYER_COLOR = "\u001B[1;96m";
+    public static final String PLAYER_COLOR = "\u001B[44m\u001B[97m";
 
     // monster: red background with black text (intense contrast)
     public static final String MONSTER_COLOR = "\u001B[41m\u001B[30m";
@@ -184,6 +184,10 @@ class Grid {
                     System.out.print(TRAP_COLOR + "^^" + RESET);
                 }
 
+                else if(monster.pos.x == i && monster.pos.y == j) {
+                    System.out.print(MONSTER_COLOR + "MM" + RESET);
+                }
+
                 // Wall
                 else if(grid[i][j] == '|') {
                     System.out.print(WALL_COLOR + BLOCK + RESET);
@@ -209,6 +213,27 @@ class Grid {
             }
         }
         return false;
+    }
+
+    public void updateTrapDurations() {
+        // Iterate backwards so we can safely remove items while looping
+        for (int i = activeTraps.size() - 1; i >= 0; i--) {
+            Position pos = activeTraps.get(i);
+            Trap t = trapQuestions.get(pos);
+
+            if (t != null) {
+                t.timer--; // Decrease life by 1
+
+                // If time runs out
+                if (t.timer <= 0) {
+                    activeTraps.remove(i);      // Remove location from list
+                    trapQuestions.remove(pos);  // Remove data from map
+
+                    // Optional: visual cue that a trap disappeared
+                    // System.out.println("Warning: A trap signal has faded...");
+                }
+            }
+        }
     }
 
     //atas → kalau bisa, taruh trap di situ

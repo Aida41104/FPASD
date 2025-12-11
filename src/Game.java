@@ -57,7 +57,9 @@ public class Game {
 
             grid.spawnTrap(player); //spawn trap. misal Player di (5,5) Trap muncul di (5,8)
             player.move(grid);//wasd gerak
-            grid.checkTrap(player, sc); //player nginjek trap ga?
+            grid.checkTrap(player, sc);     // Did I step on one?
+            grid.spawnTrap(player);         // Create new ones
+            grid.updateTrapDurations();     // <--- NEW: Remove old ones
             monster.moveTowards(player, grid); // m grk 1 langkah
 
             grid.aturCahaya(player, langkah);//hitung ulang fog setelah semua bergerak

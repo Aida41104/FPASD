@@ -1,9 +1,12 @@
 import java.util.*;
-class Trap {
-    String question; //buat nyimpan pertanyaan
+public class Trap {
+    String question;
     String answer;
-    Trap(String q, String a){ //bikin trap (new Trap)
-        question = q; //nyimpen pertanyaan ke q, q disimpan di question
-        answer = a;
+    int timer; // <--- NEW FIELD
+
+    public Trap(String question, String answer) {
+        this.question = question;
+        this.answer = answer;
+        this.timer = 5; // <--- Set default duration to 3 turns
     }
 }
