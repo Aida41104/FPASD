@@ -131,28 +131,20 @@ class Grid {
         for(int i = 0; i < ROW; i++){
             for(int j = 0; j < COL; j++){
 
-                // ====== MONSTER DICEK PALING AWAL ======
+                // ===== MONSTER PALING AWAL =====
                 if (monster.pos.x == i && monster.pos.y == j) {
-
                     if (visible[i][j]) {
-                        // Monster terlihat jelas
                         System.out.print(MONSTER_COLOR + "XX" + RESET);
-                    }
-                    else if (pernahTerlihat[i][j]) {
-                        // Monster dalam fog tapi pernah terlihat → siluet
+                    } else if (pernahTerlihat[i][j]) {
                         System.out.print("\u001B[31m░░" + RESET);
+                    } else {
+                        System.out.print(FOG_DARK + RESET);
                     }
-                    else {
-                        // Monster dalam fog dan belum pernah terlihat → fog hitam
-                        System.out.print(FOG_DARK + "  " + RESET);
-                    }
-
                     continue;
                 }
 
-                // ====== FOG UNTUK TILE NON-MONSTER ======
+                // ===== FOG UNTUK TILE NON-MONSTER =====
                 if (!visible[i][j]) {
-
                     int level = langkah % 3;
                     String fogColor = switch(level) {
                         case 0 -> FOG_DARK;
@@ -160,41 +152,25 @@ class Grid {
                         case 2 -> FOG_LIGHT;
                         default -> FOG_DARK;
                     };
-
                     System.out.print(fogColor + RESET);
                     continue;
                 }
 
-                // ====== TILE TERLIHAT NORMAL ======
-
-                // Player
+                // ===== TILE TERLIHAT NORMAL =====
                 if(player.pos.x == i && player.pos.y == j) {
                     System.out.print(PLAYER_COLOR + "<>" + RESET);
-                }
-
-                // Trap
-                else if(isTrap(i, j)) {
+                } else if(isTrap(i, j)) {
                     System.out.print(TRAP_COLOR + "^^" + RESET);
-                }
-
-                else if(monster.pos.x == i && monster.pos.y == j) {
-                    System.out.print(MONSTER_COLOR + "MM" + RESET);
-                }
-
-                // Wall
-                else if(grid[i][j] == '|') {
+                } else if(grid[i][j] == '|') {
                     System.out.print(WALL_COLOR + BLOCK + RESET);
-                }
-
-                // Kosong
-                else {
-                    System.out.print("  ");
+                } else {
+                    System.out.print("  "); // empty space tetap 2 karakter
                 }
             }
-
             System.out.println();
         }
     }
+
 
 
 
