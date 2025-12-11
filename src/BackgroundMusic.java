@@ -5,7 +5,7 @@ public class BackgroundMusic {
 
     public BackgroundMusic() {
         try {
-            File soundFile = new File("src/sounds/bgm.wav");
+            File soundFile = new File("src/sounds/bgm.wav.wav");
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
 
             Clip clip = AudioSystem.getClip();
