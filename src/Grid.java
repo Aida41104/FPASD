@@ -68,15 +68,16 @@ class Grid {
     }
 
     private void cahayaDFS(int x, int y, int depth, boolean[][] visited){
-        if(depth > 5) return;
-        if(x < 0 || x >= ROW || y < 0 || y >= COL) return;
-        if(visited[x][y]) return;
+        if(depth > 5) return; //jarak DFS dari player
+        if(x < 0 || x >= ROW || y < 0 || y >= COL) return; //Cek keluar batas grid
+        if(visited[x][y]) return; //Cegah infinite recursion
 
         visible[x][y] = true;
-        pernahTerlihat[x][y] = true;
+        pernahTerlihat[x][y] = true; //Tandai tile sebagai terlihat
 
         if(grid[x][y] == '|') return; // wall terlihat tapi tidak ditembus
 
+        //DFS menjelajah sampai kedalaman maksimum.
         cahayaDFS(x+1, y, depth+1, visited);
         cahayaDFS(x-1, y, depth+1, visited);
         cahayaDFS(x, y+1, depth+1, visited);
