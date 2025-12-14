@@ -170,12 +170,34 @@ Struktur file pada proyek Monster Chase disusun secara modular untuk memisahkan 
 ## Screenshot Program  
 Pada bagian ini ditampilkan beberapa tangkapan layar (screenshot) dari game Monster Chase untuk memberikan gambaran visual mengenai tampilan dan mekanisme permainan. Screenshot disertakan sebagai ilustrasi pendukung dan tidak ditampilkan secara berlebihan.  
 
-1. Tampilan Awal Permainan
-   Ini adalah tampilan awal saat kita run, yaitu menampilkan story beserta tampilan awal map dengan player ditandai dengan warna biru dan digerakkan dengan input W/A/S/D sebanyak 1 kali per turn, monster dengan warna merah, dan tembok berwarna ungu yang tak dapat dilewati oleh player  
+1. Tampilan Awal Permainan  
+   Ini adalah tampilan awal saat kita run, yaitu menampilkan story beserta tampilan awal map dengan player ditandai dengan warna biru, monster dengan warna merah, dan tembok berwarna ungu yang tak dapat dilewati oleh player  
    <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/3688ecc2-b9e4-44da-a5f4-e32ee18d904a" />  
    <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/007adeca-a0f9-42a2-b43e-e1b397ea0a45" />  
-   
-2. Sistem Fog
+
+2. Gerakan Player (W/A/S/D)
+   Player dapat bergerak dengan input W untuk ke atas, A untuk ke kiri, S untuk ke bawah, D untuk ke kanan
+
+   Player input W untuk ke atas:
+   <img width="366" height="638" alt="image(31)" src="https://github.com/user-attachments/assets/ab8a23ae-7aff-4866-80d3-117bf8783c17" />  
+
+
+   Player input A untuk ke kiri:
+   <img width="398" height="665" alt="image(30)" src="https://github.com/user-attachments/assets/9fdc5351-9981-48f5-8666-6f4772db8aa0" />  
+
+   Player input S untuk ke bawah:
+   <img width="727" height="385" alt="image(26)" src="https://github.com/user-attachments/assets/bf32241a-a948-4c9f-bce1-fe9e0da42174" />  
+   <img width="620" height="431" alt="image(27)" src="https://github.com/user-attachments/assets/e229d666-443a-4933-a451-cd9a64b5df6f" />
+
+   Player input D untuk ke kanan:
+   <img width="631" height="404" alt="image(28)" src="https://github.com/user-attachments/assets/b87d5be5-b749-4d53-9fbd-f8ca85c62b33" />
+   <img width="579" height="387" alt="image(29)" src="https://github.com/user-attachments/assets/1d121c79-a725-4cd6-b690-d66da815454f" />
+
+3. Monster Mengejar Player dengan BFS  
+   Monster (merah) bergerak menuju player (biru) sebanyak 1 langkah per turn dengan menggunakan BFS agar dapat berjalan mengikuti jalur terdekat menuju player.
+   <img width="473" height="630" alt="image(32)" src="https://github.com/user-attachments/assets/0a60ae81-5ec7-4726-9867-621edf26c6a9" />  
+
+4. Sistem Fog  
    Pada saat tertentu, player tidak bisa melihat keseluruhan labirin (hanya area dekat dirinya yang terlihat, yaitu 5 tile di sekitar player dan tidak menembus tembok). Kabut akan hilang di setiap kelipatam 5 turn dan akan muncul lagi di turn selanjutnya. Area berwarna lebih gelap merupakan posisi monster sebagai hint keberadaan monster.
 
    Map akan seluruhnya terlihat pada pertama kali dirender:
@@ -190,29 +212,38 @@ Pada bagian ini ditampilkan beberapa tangkapan layar (screenshot) dari game Mons
 
    <img width="693" height="424" alt="image(25)" src="https://github.com/user-attachments/assets/d41dad36-ea84-40b7-876b-205b31c8a881" />
    
-4. Monster Mengejar Player dengan BFS
-   Monster bergerak menuju player sebanyak 1 langkah per turn dengan menggunakan BFS agar dapat berjalan mengikuti jalur terdekat menuju player.  
-   <img width="569" height="439" alt="image(16)" src="https://github.com/user-attachments/assets/d032463f-c05f-4db4-811e-c5b8dc833220" />
    
 5. Trap Berisi Pertanyaan  
-   Saat player menginjak trap, maka player diwajibkan untuk menjawan pertanyaan dengan pilihan y/n, y untuk yes/ benar, n untuk no/ salah.  
+   Saat player menginjak trap, maka player diwajibkan untuk menjawan pertanyaan dengan pilihan y/n, y untuk yes/ benar, n untuk no/ salah.
+   
    <img width="1030" height="444" alt="image(15)" src="https://github.com/user-attachments/assets/d8950a91-4255-46f8-ba7d-1de1edcbd03c" />
 
-6. Kondisi Menjawab Trap Benar
-   Ketika player menjawab trap dengan benar, maka player tidak akan mengalami apapun/ tidak mendapat penalti.
-   Berikut ketika menginjak trap:
+6. Kondisi Menjawab Trap Benar  
+   Ketika player menjawab trap dengan benar, maka player tidak akan mengalami apapun/ tidak mendapat penalti.  
    
-   <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/6c47c689-5a44-451f-ae33-f00d683bcbf7" />
+   Berikut ketika menginjak trap:  
+   
+   <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/6c47c689-5a44-451f-ae33-f00d683bcbf7" />  
 
    Berikut merupakan input untuk bergerak:  
    
-   <img width="608" height="407" alt="image(21)" src="https://github.com/user-attachments/assets/ef3d47f2-3585-431f-b4f8-aadced40ece9" />
+   <img width="608" height="407" alt="image(21)" src="https://github.com/user-attachments/assets/ef3d47f2-3585-431f-b4f8-aadced40ece9" />  
 
-   Player tetap dapat bergerak:
-   <img width="549" height="387" alt="image(22)" src="https://github.com/user-attachments/assets/cfdf03f2-c87e-40ea-9c12-6fb4e681e5e0" />  
+   Player tetap dapat bergerak:  
    
-7. Kondisi Kalah
-   <img width="691" height="563" alt="image(17)" src="https://github.com/user-attachments/assets/902b86a1-a98a-4879-b264-cb28c6db9d9c" />
-8. Kondisi Menang
+   <img width="549" height="387" alt="image(22)" src="https://github.com/user-attachments/assets/cfdf03f2-c87e-40ea-9c12-6fb4e681e5e0" />
+
+7. Kondisi Menjawab Trap dengan Salah
+   Ketika player salah menjawab trap, maka ia akan dikenakan penalty berupa skip 1 turn/ tidak dapat bergerak dalam 1 turn, sehingga monster akan lebih mudah menangkapnya
+   <img width="674" height="705" alt="image(33)" src="https://github.com/user-attachments/assets/2e85b997-4795-4058-a719-cdcfaec307d1" />  
+
+8. Kondisi Kalah
+   Berikut merupakan kondisi kalah, yaitu ketika monster berhasil menangkap player (posisi monster = posisi player) dan ditandai dengan output 'Game Over' sebgaia tanda kekalahan:
+   
+   <img width="691" height="563" alt="image(17)" src="https://github.com/user-attachments/assets/902b86a1-a98a-4879-b264-cb28c6db9d9c" />  
+   
+9. Kondisi Menang
+    Berikut ketika kondisi menang, yaitu ketika player berhasil menyentuh koordinat finish tanpa tertangkap monster dan ditandai dengan output 'You Win' sebagia tanda kemenangan:  
+    
    <img width="609" height="521" alt="image(18)" src="https://github.com/user-attachments/assets/539448cc-d4e3-45d0-8998-723034a10c6a" />
 
