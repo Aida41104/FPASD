@@ -176,11 +176,11 @@ Pada pengembangan game Monster Chase, beberapa algoritma dari mata kuliah Algori
    B. Struktur Data Pendukung: Queue, array jarak (distance), dan array parent   
    C. Implementasi pada Kode:Monster.moveTowards(Player player, Grid grid)  
    D. Dalam implementasinya, BFS ini bekerja sebagia berikut:  
-      a. Dimulai dari posisi monster.  
-      b. Menjelajah grid secara level-by-level.
-      c. BFS menyimpan parent untuk setiap tile, sehingga bisa ditelusuri kembali jalurnya.
-      d. Ketika BFS mencapai posisi pemain, BFS berhenti.
-      e. Monster menelusuri kembali jalur terpendek dari player ke parent hingga menemukan langkah berikutnya.
+      * Dimulai dari posisi monster.
+      * Menjelajah grid secara level-by-level.
+      * BFS menyimpan parent untuk setiap tile, sehingga bisa ditelusuri kembali jalurnya.
+      * Ketika BFS mencapai posisi pemain, BFS berhenti.
+      * Monster menelusuri kembali jalur terpendek dari player ke parent hingga menemukan langkah berikutnya.
    
    
 2. Depth-First Search (DFS)  
@@ -191,11 +191,11 @@ Pada pengembangan game Monster Chase, beberapa algoritma dari mata kuliah Algori
    C. Implementasi pada Kode: Grid.cahayaDFS(int x, int y, int depth, boolean[][] visited)  
    D. Keterangan tambahan: Pada turn ke-1 dan setiap turn ke-5, seluruh peta akan terbuka sementara sebagai efek “vision burst”.  
    E. Cara kerja:  
-      a. Fungsi DFS dipanggil dari posisi player.  
-      b. DFS menyebar ke empat arah (atas, bawah, kiri, kanan).  
-      c. Kedalaman dibatasi hingga radius tertentu (depth ≤ 5).  
-      d. Jika menemukan tembok, DFS berhenti di arah itu.  
-      e. Tile yang dilewati DFS menjadi terlihat (visible).  
+      * Fungsi DFS dipanggil dari posisi player.
+      * DFS menyebar ke empat arah (atas, bawah, kiri, kanan).
+      * Kedalaman dibatasi hingga radius tertentu (depth ≤ 5).
+      * Jika menemukan tembok, DFS berhenti di arah itu.
+      * Tile yang dilewati DFS menjadi terlihat (visible).  
 
 4. Linear Search  
    Algoritma Linear Search digunakan untuk mengecek keberadaan trap pada posisi tertentu di dalam labirin. Pencarian dilakukan dengan menelusuri daftar trap yang aktif satu per satu hingga ditemukan kecocokan posisi.  
@@ -210,56 +210,56 @@ Pada pengembangan game Monster Chase, beberapa algoritma dari mata kuliah Algori
 Dalam pengembangan game Monster Chase, beberapa struktur data digunakan untuk mendukung mekanisme permainan serta implementasi algoritma Algoritma dan Struktur Data. Pemilihan struktur data disesuaikan dengan kebutuhan efisiensi akses, pengelolaan data, dan kemudahan implementasi algoritma.  
 
 1. Array Dua Dimensi (char[][])  
-   Struktur data array dua dimensi digunakan untuk merepresentasikan peta labirin permainan yang berukuran 15×15. Setiap elemen array menyimpan informasi mengenai kondisi suatu tile, seperti jalur kosong atau tembok.  
-   Fungsi: Representasi dunia permainan (labirin)  
-   Keunggulan: Akses langsung ke setiap tile dengan kompleksitas waktu O(1)  
-   Implementasi pada Kode: Grid.grid  
+   * Struktur data array dua dimensi digunakan untuk merepresentasikan peta labirin permainan yang berukuran 15×15. Setiap elemen array menyimpan informasi mengenai kondisi suatu tile, seperti jalur kosong atau tembok.
+   * Fungsi: Representasi dunia permainan (labirin)
+   * Keunggulan: Akses langsung ke setiap tile dengan kompleksitas waktu O(1)
+   * Implementasi pada Kode: Grid.grid  
 
 2. Class Object (Position, Player, Monster, Trap)  
-   Beberapa class object digunakan untuk merepresentasikan entitas utama dalam permainan.  
-   Position digunakan untuk menyimpan koordinat posisi dalam bentuk pasangan (x, y).  
-   Player merepresentasikan karakter pemain.  
-   Monster merepresentasikan musuh yang mengejar pemain.  
-   Trap menyimpan informasi pertanyaan, jawaban, dan durasi jebakan.  
-   Penggunaan class object membantu memisahkan data dan logika, sehingga kode menjadi lebih terstruktur dan mudah dipahami.  
+   * Beberapa class object digunakan untuk merepresentasikan entitas utama dalam permainan.
+   * Position digunakan untuk menyimpan koordinat posisi dalam bentuk pasangan (x, y).
+   * Player merepresentasikan karakter pemain.
+   * Monster merepresentasikan musuh yang mengejar pemain.
+   * Trap menyimpan informasi pertanyaan, jawaban, dan durasi jebakan.
+   * Penggunaan class object membantu memisahkan data dan logika, sehingga kode menjadi lebih terstruktur dan mudah dipahami.  
 
 3. Queue (LinkedList)  
-   Struktur data Queue digunakan dalam implementasi algoritma Breadth-First Search (BFS) pada pergerakan monster.  
-   Fungsi: Menyimpan daftar posisi yang akan diproses dalam BFS  
-   Karakteristik: First In First Out (FIFO)  
-   Implementasi pada Kode: Queue<Position> q = new LinkedList<>();   
+   * Struktur data Queue digunakan dalam implementasi algoritma Breadth-First Search (BFS) pada pergerakan monster.
+   * Fungsi: Menyimpan daftar posisi yang akan diproses dalam BFS
+   * Karakteristik: First In First Out (FIFO)
+   * Implementasi pada Kode: Queue<Position> q = new LinkedList<>();   
 
 4. Array Jarak dan Parent (int[][], Position[][])  
    Untuk mendukung BFS, digunakan:  
-      a. int[][] dist untuk menyimpan jarak dari posisi monster ke setiap tile  
-      b. Position[][] parent untuk menyimpan asal pergerakan tiap tile  
-      c. Struktur ini memungkinkan rekonstruksi jalur terpendek yang akan dilalui monster menuju pemain.  
-      d. Implementasi pada Kode: Monster.moveTowards(Player player, Grid grid)  
+      * int[][] dist untuk menyimpan jarak dari posisi monster ke setiap tile
+      * Position[][] parent untuk menyimpan asal pergerakan tiap tile
+      * Struktur ini memungkinkan rekonstruksi jalur terpendek yang akan dilalui monster menuju pemain.
+      * Implementasi pada Kode: Monster.moveTowards(Player player, Grid grid)  
 
 5. ArrayList (List<Position>)  
-   Struktur data ArrayList digunakan untuk menyimpan daftar trap yang sedang aktif di dalam permainan.  
-   Fungsi: Menyimpan dan mengelola koordinat trap aktif  
-   Keunggulan: Mudah ditambah dan dihapus secara dinamis  
-   Kompleksitas Pencarian: O(n) (linear search)  
-   Implementasi pada Kode: List<Position> activeTraps   
+   * Struktur data ArrayList digunakan untuk menyimpan daftar trap yang sedang aktif di dalam permainan.
+   * Fungsi: Menyimpan dan mengelola koordinat trap aktif
+   * Keunggulan: Mudah ditambah dan dihapus secara dinamis
+   * Kompleksitas Pencarian: O(n) (linear search)
+   * Implementasi pada Kode: List<Position> activeTraps   
 
 6. HashMap (Map<Position, Trap>)  
-   Struktur data HashMap digunakan untuk memetakan posisi trap dengan data pertanyaan yang terkait.  
-   Fungsi: Menghubungkan koordinat trap dengan objek Trap  
-   Keunggulan: Akses data dengan kompleksitas waktu O(1)  
-   Implementasi pada Kode: Map<Position, Trap> trapQuestions  
+   * Struktur data HashMap digunakan untuk memetakan posisi trap dengan data pertanyaan yang terkait.
+   * Fungsi: Menghubungkan koordinat trap dengan objek Trap
+   * Keunggulan: Akses data dengan kompleksitas waktu O(1)
+   * Implementasi pada Kode: Map<Position, Trap> trapQuestions  
 
 7. Array Boolean (boolean[][])  
-   Array boolean digunakan untuk mendukung sistem Fog.  
-   boolean[][] visible digunakan untuk menandai tile yang sedang terlihat oleh pemain  
-   boolean[][] pernahTerlihat digunakan untuk menandai tile yang pernah terlihat sebelumnya  
-   Struktur ini membantu pengelolaan visibilitas peta secara efisien.  
-   Implementasi pada Kode: Grid.visible Grid.pernahTerlihat  
+   * Array boolean digunakan untuk mendukung sistem Fog.
+   * boolean[][] visible digunakan untuk menandai tile yang sedang terlihat oleh pemain
+   * boolean[][] pernahTerlihat digunakan untuk menandai tile yang pernah terlihat sebelumnya
+   * Struktur ini membantu pengelolaan visibilitas peta secara efisien.
+   * Implementasi pada Kode: Grid.visible Grid.pernahTerlihat  
 
 8. List dan Random  
-   Struktur data List digunakan untuk menyimpan kumpulan pertanyaan, sedangkan kelas Random digunakan untuk memilih pertanyaan secara acak saat trap dibuat.  
-   Fungsi: Menyediakan variasi pertanyaan dalam permainan  
-   Implementasi pada Kode: List<String[]> questionBank, Random  
+   * Struktur data List digunakan untuk menyimpan kumpulan pertanyaan, sedangkan kelas Random digunakan untuk memilih pertanyaan secara acak saat trap dibuat.
+   * Fungsi: Menyediakan variasi pertanyaan dalam permainan
+   * Implementasi pada Kode: List<String[]> questionBank, Random  
 
 ## Struktur File Penting  
 Struktur file pada proyek Monster Chase disusun secara modular untuk memisahkan fungsi dan tanggung jawab setiap komponen, sehingga memudahkan pengembangan, pemeliharaan, dan pemahaman alur program. Berikut adalah file-file utama beserta fungsinya:
