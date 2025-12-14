@@ -1,5 +1,5 @@
 # Monster Chase (FInal Project ASD)
-# Implementasi Algoritma Breadth-First Search dan Depth-First Search dalam Game Labirin Berbasis Java
+Implementasi Algoritma Breadth-First Search dan Depth-First Search dalam Game Labirin Berbasis Java
 
 ## Informasi Proyek:
 Mata Kuliah: Algoritma dan Struktur Data
@@ -59,21 +59,178 @@ Permainan memiliki kondisi menang apabila pemain berhasil mencapai titik keluar 
 Game dilengkapi dengan background music yang berjalan secara berulang untuk mendukung suasana permainan dan meningkatkan pengalaman pengguna selama bermain.
 
 ##  Algoritma yang Digunakan
+
 Pada pengembangan game Monster Chase, beberapa algoritma dari mata kuliah Algoritma dan Struktur Data diterapkan secara langsung ke dalam mekanisme permainan. Setiap algoritma memiliki peran spesifik yang mendukung fitur dan alur permainan sebagai berikut.
 
 1. Breadth-First Search (BFS)
-Algoritma Breadth-First Search (BFS) digunakan untuk mengatur pergerakan monster dalam mengejar pemain. BFS bekerja dengan menjelajahi node secara bertahap berdasarkan jarak terdekat (level by level), sehingga menjamin ditemukannya jalur terpendek pada struktur graph tanpa bobot.
+   Algoritma Breadth-First Search (BFS) digunakan untuk mengatur pergerakan monster dalam mengejar pemain. BFS bekerja dengan menjelajahi node secara bertahap berdasarkan jarak terdekat (level by level), sehingga menjamin ditemukannya jalur terpendek pada struktur graph tanpa bobot.
+   
+   Tujuan: Menentukan jalur terpendek monster menuju pemain
+   
+   Struktur Data Pendukung: Queue, array jarak (distance), dan array paren
 
-Tujuan: Menentukan jalur terpendek monster menuju pemain
+   Implementasi pada Kode:Monster.moveTowards(Player player, Grid grid)
 
-Struktur Data Pendukung: Queue, array jarak (distance), dan array paren
+   Dalam implementasinya, BFS ini bekerja sebagia berikut:
+   
+   Dimulai dari posisi monster.
+   
+   Menjelajah grid secara level-by-level.
+   
+   BFS menyimpan parent untuk setiap tile, sehingga bisa ditelusuri kembali jalurnya.
 
-Dalam implementasinya, BFS ini bekerja sebagia berikut:
-Dimulai dari posisi monster.
-Menjelajah grid secara level-by-level.
-BFS menyimpan parent untuk setiap tile, sehingga bisa ditelusuri kembali jalurnya.
-Ketika BFS mencapai posisi pemain, BFS berhenti.
-Monster menelusuri kembali jalur terpendek dari player ke parent hingga menemukan langkah berikutnya.
-
+   Ketika BFS mencapai posisi pemain, BFS berhenti.
+   
+   Monster menelusuri kembali jalur terpendek dari player ke parent hingga menemukan langkah berikutnya.
+   
+   
 2. Depth-First Search (DFS)
    Algoritma Depth-First Search (DFS) digunakan dalam sistem Fog of War untuk mengatur area penglihatan pemain. DFS bekerja dengan menelusuri satu jalur secara mendalam hingga mencapai batas tertentu sebelum berpindah ke jalur lain, sehingga sesuai untuk mensimulasikan penyebaran cahaya di sekitar pemain.
+
+   Tujuan: Membuka area penglihatan pemain di sekitar posisinya
+
+   Struktur Data Pendukung: Rekursi (implicit stack) dan array visited
+
+   Implementasi pada Kode:
+   Grid.cahayaDFS(int x, int y, int depth, boolean[][] visited)
+
+   Berikut cara kerjanya:
+   Pada turn ke-1 dan setiap turn ke-5, seluruh peta akan terbuka sementara sebagai efek “vision burst”.
+
+ ### Cara kerjanya:
+ 
+ Fungsi DFS dipanggil dari posisi player.
+ 
+ DFS menyebar ke empat arah (atas, bawah, kiri, kanan).
+ 
+ Kedalaman dibatasi hingga radius tertentu (depth ≤ 5).
+ 
+ Jika menemukan tembok, DFS berhenti di arah itu.
+ 
+ Tile yang dilewati DFS menjadi terlihat (visible).
+
+3. Linear Search
+ 
+   Algoritma Linear Search digunakan untuk mengecek keberadaan trap pada posisi tertentu di dalam labirin. Pencarian dilakukan dengan menelusuri daftar trap yang aktif satu per satu hingga ditemukan kecocokan posisi.
+
+   Tujuan: Mengecek apakah suatu posisi merupakan lokasi trap
+
+   Struktur Data Pendukung: List (ArrayList)
+
+   Implementasi pada Kode:
+
+   Grid.isTrap(int x, int y)
+
+   Grid.checkTrap(Player player, Scanner sc)
+
+
+## Struktur Data yang Digunakan
+
+Dalam pengembangan game Monster Chase, beberapa struktur data digunakan untuk mendukung mekanisme permainan serta implementasi algoritma Algoritma dan Struktur Data. Pemilihan struktur data disesuaikan dengan kebutuhan efisiensi akses, pengelolaan data, dan kemudahan implementasi algoritma.
+
+1. Array Dua Dimensi (char[][])
+
+Struktur data array dua dimensi digunakan untuk merepresentasikan peta labirin permainan yang berukuran 15×15. Setiap elemen array menyimpan informasi mengenai kondisi suatu tile, seperti jalur kosong atau tembok.
+
+Fungsi: Representasi dunia permainan (labirin)
+
+Keunggulan: Akses langsung ke setiap tile dengan kompleksitas waktu O(1)
+
+Implementasi pada Kode:
+Grid.grid
+
+2. Class Object (Position, Player, Monster, Trap)
+
+Beberapa class object digunakan untuk merepresentasikan entitas utama dalam permainan.
+
+Position digunakan untuk menyimpan koordinat posisi dalam bentuk pasangan (x, y).
+
+Player merepresentasikan karakter pemain.
+
+Monster merepresentasikan musuh yang mengejar pemain.
+
+Trap menyimpan informasi pertanyaan, jawaban, dan durasi jebakan.
+
+Penggunaan class object membantu memisahkan data dan logika, sehingga kode menjadi lebih terstruktur dan mudah dipahami.
+
+3. Queue (LinkedList)
+
+Struktur data Queue digunakan dalam implementasi algoritma Breadth-First Search (BFS) pada pergerakan monster.
+
+Fungsi: Menyimpan daftar posisi yang akan diproses dalam BFS
+
+Karakteristik: First In First Out (FIFO)
+
+Implementasi pada Kode:
+Queue<Position> q = new LinkedList<>();
+
+4. Array Jarak dan Parent (int[][], Position[][])
+
+Untuk mendukung BFS, digunakan:
+
+int[][] dist untuk menyimpan jarak dari posisi monster ke setiap tile
+
+Position[][] parent untuk menyimpan asal pergerakan tiap tile
+
+Struktur ini memungkinkan rekonstruksi jalur terpendek yang akan dilalui monster menuju pemain.
+
+Implementasi pada Kode:
+Monster.moveTowards(Player player, Grid grid)
+
+5. ArrayList (List<Position>)
+
+Struktur data ArrayList digunakan untuk menyimpan daftar trap yang sedang aktif di dalam permainan.
+
+Fungsi: Menyimpan dan mengelola koordinat trap aktif
+
+Keunggulan: Mudah ditambah dan dihapus secara dinamis
+
+Kompleksitas Pencarian: O(n) (linear search)
+
+Implementasi pada Kode:
+List<Position> activeTraps
+
+6. HashMap (Map<Position, Trap>)
+
+Struktur data HashMap digunakan untuk memetakan posisi trap dengan data pertanyaan yang terkait.
+
+Fungsi: Menghubungkan koordinat trap dengan objek Trap
+
+Keunggulan: Akses data dengan kompleksitas waktu O(1)
+
+Implementasi pada Kode:
+Map<Position, Trap> trapQuestions
+
+7. Array Boolean (boolean[][])
+
+Array boolean digunakan untuk mendukung sistem Fog of War.
+
+boolean[][] visible digunakan untuk menandai tile yang sedang terlihat oleh pemain
+
+boolean[][] pernahTerlihat digunakan untuk menandai tile yang pernah terlihat sebelumnya
+
+Struktur ini membantu pengelolaan visibilitas peta secara efisien.
+
+Implementasi pada Kode:
+Grid.visible
+Grid.pernahTerlihat
+
+8. List dan Random
+
+Struktur data List digunakan untuk menyimpan kumpulan pertanyaan, sedangkan kelas Random digunakan untuk memilih pertanyaan secara acak saat trap dibuat.
+
+Fungsi: Menyediakan variasi pertanyaan dalam permainan
+
+Implementasi pada Kode:
+List<String[]> questionBank
+Random
+
+   | File                   | Fungsi                 |
+| ---------------------- | ---------------------- |
+| `Game.java`            | Main game loop         |
+| `Grid.java`            | Map, fog, trap, render |
+| `Player.java`          | Gerak player           |
+| `Monster.java`         | BFS pathfinding        |
+| `Position.java`        | Representasi koordinat |
+| `Trap.java`            | Data pertanyaan trap   |
+| `BackgroundMusic.java` | Audio latar            |
