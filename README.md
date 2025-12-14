@@ -8,7 +8,7 @@ Dosen Pengampu: Renny Pradina Kusumawardani
 
 Kelas: D
 
-Kelompok: 
+Kelompok: 10
 | No | Nama Lengkap        | NRP     |
 | -- | ------------------- | ------- |
 | 1  | Ary Ratna Aida Safa | 5026241029 |
@@ -165,4 +165,22 @@ Struktur file pada proyek Monster Chase disusun secara modular untuk memisahkan 
 | 4 | `Monster.java` | Mengatur pergerakan monster menggunakan algoritma Breadth-First Search (BFS). |
 | 5 | `Position.java` | Merepresentasikan koordinat posisi (x, y) yang digunakan oleh seluruh entitas permainan. |
 | 6 | `Trap.java` | Menyimpan data jebakan berupa pertanyaan, jawaban, dan durasi trap. |
-| 7 | `BackgroundMusic.java` | Mengelola pemutaran musik latar permainan. |
+| 7 | `BackgroundMusic.java` | Mengelola pemutaran musik latar permainan. |  
+
+## Screenshot Program  
+Pada bagian ini ditampilkan beberapa tangkapan layar (screenshot) dari game Monster Chase untuk memberikan gambaran visual mengenai tampilan dan mekanisme permainan. Screenshot disertakan sebagai ilustrasi pendukung dan tidak ditampilkan secara berlebihan.  
+
+1. Tampilan Awal Permainan
+   <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/3688ecc2-b9e4-44da-a5f4-e32ee18d904a" />
+   <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/007adeca-a0f9-42a2-b43e-e1b397ea0a45" />  
+2. Sistem Fog
+   <img width="620" height="474" alt="image(14)" src="https://github.com/user-attachments/assets/a0d78cfb-85d1-47a4-a89c-b7ee23180cf9" />
+3. Monster Mengejar Player dengan BFS
+   <img width="569" height="439" alt="image(16)" src="https://github.com/user-attachments/assets/d032463f-c05f-4db4-811e-c5b8dc833220" />
+4. Trap Berisi Pertanyaan
+   <img width="1030" height="444" alt="image(15)" src="https://github.com/user-attachments/assets/d8950a91-4255-46f8-ba7d-1de1edcbd03c" />
+5. Kondisi Kalah
+   <img width="691" height="563" alt="image(17)" src="https://github.com/user-attachments/assets/902b86a1-a98a-4879-b264-cb28c6db9d9c" />
+6. Kondisi Menang
+   <img width="609" height="521" alt="image(18)" src="https://github.com/user-attachments/assets/539448cc-d4e3-45d0-8998-723034a10c6a" />
+
