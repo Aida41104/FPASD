@@ -247,6 +247,17 @@ Pada bagian ini ditampilkan beberapa tangkapan layar (screenshot) dari game Mons
     
    <img width="609" height="521" alt="image(18)" src="https://github.com/user-attachments/assets/539448cc-d4e3-45d0-8998-723034a10c6a" />
 
+## Update Project
+| Tanggal Update   | Deskripsi Update                                                                                                                                                                                                          | File / Class yang Diubah                                                                 |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| 28 November 2025 | Pembuatan dasar permainan meliputi peta labirin, pergerakan player, pergerakan monster menggunakan algoritma Breadth-First Search (BFS), serta penambahan sistem trap dengan efek *stun*.                                 | `Game.java`, `Grid.java`, `Monster.java`, `Player.java`, `Position.java`, `Trap.java`    |
+| 3 Desember 2025  | Perapian struktur kode agar lebih sederhana dan mudah dipahami, serta penambahan komentar pada kode untuk memudahkan pengembangan dan pemeliharaan lanjutan. Selain itu dilakukan perubahan tampilan antarmuka permainan. | `Position.java`, `Trap.java`, `Player.java`, `Monster.java`, `Grid.java`, `Game.java`    |
+| 4 Desember 2025  | Penyederhanaan kode lanjutan, penambahan komentar, penambahan alur cerita (*storyline*) pada permainan, serta penghapusan bagian kode yang tidak digunakan.                                                               | `Game.java`, `Grid.java`, `Player.java`                                                  |
+| 10 Desember 2025 | Penambahan sistem *Fog of War* menggunakan algoritma Depth-First Search (DFS) untuk membatasi area penglihatan pemain.                                                                                                    | `Game.java`, `Grid.java`                                                                 |
+| 11 Desember 2025 | Penyempurnaan sistem *Fog of War*, penambahan musik latar (*background music*), serta pembaruan visual tampilan player agar lebih jelas.                                                                                  | `Grid.java`, `Game.java`, `BackgroundMusic.java`, `src/sounds/6525273874497800630-c.wav` |
+| 12 Desember 2025 | Penyempurnaan lanjutan pada sistem *Fog of War* untuk meningkatkan kejelasan tampilan dan kenyamanan permainan.                                                                                                           | `Grid.java`                                                                              |
+
+
 ## Daftar FP Kelompok Lain:
 D-1 : Word Rank Guesser Game
 Link : https://github.com/NashiwaInsan/asdfinalproject
