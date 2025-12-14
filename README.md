@@ -307,15 +307,16 @@ Pada bagian ini ditampilkan beberapa tangkapan layar (screenshot) dari game Mons
 5. Trap Berisi Pertanyaan  
    Saat player menginjak trap, maka player diwajibkan untuk menjawan pertanyaan dengan pilihan y/n, y untuk yes/ benar, n untuk no/ salah.
    
-   <img width="1030" height="444" alt="image(15)" src="https://github.com/user-attachments/assets/d8950a91-4255-46f8-ba7d-1de1edcbd03c" />
+   ![WhatsApp Image 2025-12-14 at 14 34 59](https://github.com/user-attachments/assets/23fdd8b8-7482-436d-b0d0-df32c7a0f276)
 
-6. Kondisi Menjawab Trap dengan Salah
+7. Kondisi Menjawab Trap dengan Salah
    Ketika player salah menjawab trap, maka ia akan dikenakan penalty berupa skip 1 turn/ tidak dapat bergerak dalam 1 turn, sehingga monster akan lebih mudah menangkapnya
+   
    ![WhatsApp Image 2025-12-14 at 14 33 28](https://github.com/user-attachments/assets/91bf71e1-84f9-4dc1-b6b0-3173ca289ed5)  
 
 
 8. Kondisi Kalah
-   Berikut merupakan kondisi kalah, yaitu ketika monster berhasil menangkap player (posisi monster = posisi player) dan ditandai dengan output 'Game Over' sebgaia tanda kekalahan:
+   Berikut merupakan kondisi kalah, yaitu ketika monster berhasil menangkap player (posisi monster = posisi player) dan ditandai dengan output 'Game Over' sebgaia tanda kekalahan:  
    
     ![WhatsApp Image 2025-12-14 at 14 33 43](https://github.com/user-attachments/assets/e38b9aa7-7853-4b7b-9154-e51326bcf366)
 
@@ -323,7 +324,8 @@ Pada bagian ini ditampilkan beberapa tangkapan layar (screenshot) dari game Mons
 9. Kondisi Menang
     Berikut ketika kondisi menang, yaitu ketika player berhasil menyentuh koordinat finish tanpa tertangkap monster dan ditandai dengan output 'You Win' sebagia tanda kemenangan:  
     
-   
+   ![WhatsApp Image 2025-12-14 at 14 33 49(1)](https://github.com/user-attachments/assets/6ccfa572-38a2-4ce5-bc68-a774d6a70587)
+
 
 ## Update Project
 | Tanggal Update   | Deskripsi Update                                                                                                                                                                                                          | File / Class yang Diubah                                                                 |
@@ -334,7 +336,6 @@ Pada bagian ini ditampilkan beberapa tangkapan layar (screenshot) dari game Mons
 | 10 Desember 2025 | Penambahan sistem *Fog of War* menggunakan algoritma Depth-First Search (DFS) untuk membatasi area penglihatan pemain.                                                                                                    | `Game.java`, `Grid.java`                                                                 |
 | 11 Desember 2025 | Penyempurnaan sistem *Fog of War*, penambahan musik latar (*background music*), serta pembaruan visual tampilan player agar lebih jelas.                                                                                  | `Grid.java`, `Game.java`, `BackgroundMusic.java`, `src/sounds/6525273874497800630-c.wav` |
 | 12 Desember 2025 | Penyempurnaan lanjutan pada sistem *Fog of War* untuk meningkatkan kejelasan tampilan dan kenyamanan permainan.                                                                                                           | `Grid.java`                                                                              || Tanggal Update   | Deskripsi Update                                                                                                                                                                                                          | File / Class yang Diubah                                                                 |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | 28 November 2025 | Pembuatan dasar permainan meliputi peta labirin, pergerakan player, pergerakan monster menggunakan algoritma Breadth-First Search (BFS), serta penambahan sistem trap dengan efek *stun*.                                 | `Game.java`, `Grid.java`, `Monster.java`, `Player.java`, `Position.java`, `Trap.java`    |
 | 3 Desember 2025  | Perapian struktur kode agar lebih sederhana dan mudah dipahami, serta penambahan komentar pada kode untuk memudahkan pengembangan dan pemeliharaan lanjutan. Selain itu dilakukan perubahan tampilan antarmuka permainan. | `Position.java`, `Trap.java`, `Player.java`, `Monster.java`, `Grid.java`, `Game.java`    |
 | 4 Desember 2025  | Penyederhanaan kode lanjutan, penambahan komentar, penambahan alur cerita (*storyline*) pada permainan, serta penghapusan bagian kode yang tidak digunakan.                                                               | `Game.java`, `Grid.java`, `Player.java`                                                  |
