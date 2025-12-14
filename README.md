@@ -58,6 +58,113 @@ Permainan memiliki kondisi menang apabila pemain berhasil mencapai titik keluar 
 7. Audio Latar untuk Mendukung Atmosfer Permainan
 Game dilengkapi dengan background music yang berjalan secara berulang untuk mendukung suasana permainan dan meningkatkan pengalaman pengguna selama bermain.
 
+## Gameplay  
+Game Monster Chase dimainkan secara turn-based pada grid berukuran 15 × 15. Setiap satu input pemain dihitung sebagai 1 turn, kemudian sistem akan memperbarui kondisi permainan secara berurutan. Setiap turn berlangsung dengan urutan berikut:  
+
+1. Pengaturan Cahaya (Fog)
+
+   * Pada turn pertama dan setiap kelipatan 5, seluruh map terbuka.
+   * Pada turn lainnya, map digelapkan dan hanya area sekitar player yang terlihat menggunakan DFS dengan batas kedalaman tertentu.
+
+2. Render Tampilan
+
+   * Player, monster, tembok, trap, dan efek fog ditampilkan di console.
+   * Tile yang pernah terlihat akan ditampilkan lebih redup untuk memberi jejak eksplorasi.
+
+3. Cek Kondisi Menang/Kalah
+
+   * Menang: Player mencapai koordinat tujuan `(14,13)`
+   * Kalah: Monster berada pada posisi yang sama dengan player
+
+4. Spawn Trap
+
+   * Trap akan muncul pada jarak tertentu dari posisi player.
+   * Setiap trap membawa satu pertanyaan Algoritma dan Struktur Data.
+
+5. Gerakan Player
+
+   * Player menggerakkan karakter menggunakan input:
+
+     * `W` → atas
+     * `A` → kiri
+     * `S` → bawah
+     * `D` → kanan
+   * Player hanya dapat bergerak ke tile yang bukan tembok.
+
+6. Interaksi Trap
+
+   * Jika player menginjak trap:
+
+     * Sistem menampilkan pertanyaan
+     * Player harus menjawab dengan `y` atau `n`
+     * Jawaban salah → player kehilangan 1 turn berikutnya
+     * Jawaban benar → trap dinonaktifkan
+
+7. Manajemen Trap
+
+   * Trap memiliki durasi hidup terbatas
+   * Trap yang tidak diinjak akan otomatis menghilang setelah beberapa turn
+
+8. Pergerakan Monster
+
+   * Monster bergerak 1 langkah per turn
+   * Jalur yang dipilih adalah jalur terpendek menuju player menggunakan Breadth-First Search (BFS)
+
+9. Update Turn
+
+   * Nilai turn (`langkah`) bertambah
+   * Siklus gameplay kembali ke awal
+
+## Mekanisme Utama Gameplay
+
+1. Player
+
+* Dikendalikan manual oleh pemain
+* Dapat kehilangan giliran jika salah menjawab trap
+* Tujuan utama: keluar dari labirin sebelum tertangkap monster
+
+2. Monster
+
+* Bergerak otomatis
+* Selalu mengejar player
+* Menggunakan BFS untuk memastikan pergerakan optimal
+* Memberi tekanan waktu kepada pemain
+
+3. Fog of War
+
+* Membatasi visibilitas player
+* Diimplementasikan menggunakan DFS
+* Membuat pemain tidak bisa melihat seluruh map setiap saat
+* Menambah unsur ketegangan dan strategi
+
+4. Trap Pertanyaan
+
+* Berisi pertanyaan seputar:
+
+  * BFS & DFS
+  * Stack & Queue
+  * Tree & Graph
+* Mendorong pemain berpikir cepat di bawah tekanan
+* Kesalahan berdampak langsung pada gameplay
+
+5. Kondisi Akhir Permainan
+
+* Win
+  Player berhasil mencapai titik keluar tanpa tersentuh monster.
+
+* Game Over
+  Monster berhasil menyentuh player sebelum player keluar dari labirin.
+
+## Tujuan Gameplay
+
+Gameplay dirancang agar pemain:
+
+* Mengambil keputusan cepat
+* Memahami konsekuensi dari setiap langkah
+* Melihat langsung penerapan algoritma dalam sistem game
+* Belajar Algoritma dan Struktur Data melalui pengalaman interaktif
+
+
 ##  Algoritma yang Digunakan
 
 Pada pengembangan game Monster Chase, beberapa algoritma dari mata kuliah Algoritma dan Struktur Data diterapkan secara langsung ke dalam mekanisme permainan. Setiap algoritma memiliki peran spesifik yang mendukung fitur dan alur permainan sebagai berikut.
@@ -178,20 +285,8 @@ Pada bagian ini ditampilkan beberapa tangkapan layar (screenshot) dari game Mons
 2. Gerakan Player (W/A/S/D)
    Player dapat bergerak dengan input W untuk ke atas, A untuk ke kiri, S untuk ke bawah, D untuk ke kanan
 
-   Player input W untuk ke atas:  
+   Contoh = Player input W untuk ke atas:  
    <img width="366" height="638" alt="image(31)" src="https://github.com/user-attachments/assets/ab8a23ae-7aff-4866-80d3-117bf8783c17" />  
-
-
-   Player input A untuk ke kiri:  
-   <img width="398" height="665" alt="image(30)" src="https://github.com/user-attachments/assets/9fdc5351-9981-48f5-8666-6f4772db8aa0" />  
-
-   Player input S untuk ke bawah:  
-   <img width="727" height="385" alt="image(26)" src="https://github.com/user-attachments/assets/bf32241a-a948-4c9f-bce1-fe9e0da42174" />  
-   <img width="620" height="431" alt="image(27)" src="https://github.com/user-attachments/assets/e229d666-443a-4933-a451-cd9a64b5df6f" />
-
-   Player input D untuk ke kanan:  
-   <img width="631" height="404" alt="image(28)" src="https://github.com/user-attachments/assets/b87d5be5-b749-4d53-9fbd-f8ca85c62b33" />
-   <img width="579" height="387" alt="image(29)" src="https://github.com/user-attachments/assets/1d121c79-a725-4cd6-b690-d66da815454f" />
 
 3. Monster Mengejar Player dengan BFS  
    Monster (merah) bergerak menuju player (biru) sebanyak 1 langkah per turn dengan menggunakan BFS agar dapat berjalan mengikuti jalur terdekat menuju player.  
@@ -200,40 +295,18 @@ Pada bagian ini ditampilkan beberapa tangkapan layar (screenshot) dari game Mons
 4. Sistem Fog  
    Pada saat tertentu, player tidak bisa melihat keseluruhan labirin (hanya area dekat dirinya yang terlihat, yaitu 5 tile di sekitar player dan tidak menembus tembok). Kabut akan hilang di setiap kelipatam 5 turn dan akan muncul lagi di turn selanjutnya. Area berwarna lebih gelap merupakan posisi monster sebagai hint keberadaan monster.
 
-   Map akan seluruhnya terlihat pada pertama kali dirender:
-   
-   <img width="946" height="641" alt="image(23)" src="https://github.com/user-attachments/assets/48014679-95f2-4c07-a038-947d69f82c54" />
-
-   Lalu Map akan tertutup dengan fog:
+   Map akan seluruhnya terlihat pada pertama kali dirender. Lalu Map akan tertutup dengan fog:  
 
    <img width="630" height="384" alt="image(24)" src="https://github.com/user-attachments/assets/d8c5c6c5-05b5-428b-80cb-8df6cb55aff2" />
 
-   Map terbuka kembali/ fog menghilang setip turn kelipatan 5:
-
-   <img width="693" height="424" alt="image(25)" src="https://github.com/user-attachments/assets/d41dad36-ea84-40b7-876b-205b31c8a881" />
-   
+   Map terbuka kembali/ fog menghilang setip turn kelipatan 5  
    
 5. Trap Berisi Pertanyaan  
    Saat player menginjak trap, maka player diwajibkan untuk menjawan pertanyaan dengan pilihan y/n, y untuk yes/ benar, n untuk no/ salah.
    
    <img width="1030" height="444" alt="image(15)" src="https://github.com/user-attachments/assets/d8950a91-4255-46f8-ba7d-1de1edcbd03c" />
 
-6. Kondisi Menjawab Trap Benar  
-   Ketika player menjawab trap dengan benar, maka player tidak akan mengalami apapun/ tidak mendapat penalti.  
-   
-   Berikut ketika menginjak trap:  
-   
-   <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/6c47c689-5a44-451f-ae33-f00d683bcbf7" />  
-
-   Berikut merupakan input untuk bergerak:  
-   
-   <img width="608" height="407" alt="image(21)" src="https://github.com/user-attachments/assets/ef3d47f2-3585-431f-b4f8-aadced40ece9" />  
-
-   Player tetap dapat bergerak:  
-   
-   <img width="549" height="387" alt="image(22)" src="https://github.com/user-attachments/assets/cfdf03f2-c87e-40ea-9c12-6fb4e681e5e0" />
-
-7. Kondisi Menjawab Trap dengan Salah
+6. Kondisi Menjawab Trap dengan Salah
    Ketika player salah menjawab trap, maka ia akan dikenakan penalty berupa skip 1 turn/ tidak dapat bergerak dalam 1 turn, sehingga monster akan lebih mudah menangkapnya
    <img width="674" height="705" alt="image(33)" src="https://github.com/user-attachments/assets/2e85b997-4795-4058-a719-cdcfaec307d1" />  
 
