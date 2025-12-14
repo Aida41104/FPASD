@@ -281,7 +281,8 @@ Pada bagian ini ditampilkan beberapa tangkapan layar (screenshot) dari game Mons
 
 1. Tampilan Awal Permainan  
    Ini adalah tampilan awal saat kita run, yaitu menampilkan story beserta tampilan awal map dengan player ditandai dengan warna biru, monster dengan warna merah, dan tembok berwarna ungu yang tak dapat dilewati oleh player  
-   <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/3688ecc2-b9e4-44da-a5f4-e32ee18d904a" />  
+   ![WhatsApp Image 2025-12-14 at 14 33 18](https://github.com/user-attachments/assets/e5f07d2c-00d0-46e6-af61-8b60e1723676)  
+
    <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/007adeca-a0f9-42a2-b43e-e1b397ea0a45" />  
 
 2. Gerakan Player (W/A/S/D)
@@ -310,17 +311,19 @@ Pada bagian ini ditampilkan beberapa tangkapan layar (screenshot) dari game Mons
 
 6. Kondisi Menjawab Trap dengan Salah
    Ketika player salah menjawab trap, maka ia akan dikenakan penalty berupa skip 1 turn/ tidak dapat bergerak dalam 1 turn, sehingga monster akan lebih mudah menangkapnya
-   <img width="674" height="705" alt="image(33)" src="https://github.com/user-attachments/assets/2e85b997-4795-4058-a719-cdcfaec307d1" />  
+   ![WhatsApp Image 2025-12-14 at 14 33 28](https://github.com/user-attachments/assets/91bf71e1-84f9-4dc1-b6b0-3173ca289ed5)  
+
 
 8. Kondisi Kalah
    Berikut merupakan kondisi kalah, yaitu ketika monster berhasil menangkap player (posisi monster = posisi player) dan ditandai dengan output 'Game Over' sebgaia tanda kekalahan:
    
-   <img width="691" height="563" alt="image(17)" src="https://github.com/user-attachments/assets/902b86a1-a98a-4879-b264-cb28c6db9d9c" />  
+    ![WhatsApp Image 2025-12-14 at 14 33 43](https://github.com/user-attachments/assets/e38b9aa7-7853-4b7b-9154-e51326bcf366)
+
    
 9. Kondisi Menang
     Berikut ketika kondisi menang, yaitu ketika player berhasil menyentuh koordinat finish tanpa tertangkap monster dan ditandai dengan output 'You Win' sebagia tanda kemenangan:  
     
-   <img width="609" height="521" alt="image(18)" src="https://github.com/user-attachments/assets/539448cc-d4e3-45d0-8998-723034a10c6a" />
+   
 
 ## Update Project
 | Tanggal Update   | Deskripsi Update                                                                                                                                                                                                          | File / Class yang Diubah                                                                 |
@@ -330,7 +333,16 @@ Pada bagian ini ditampilkan beberapa tangkapan layar (screenshot) dari game Mons
 | 4 Desember 2025  | Penyederhanaan kode lanjutan, penambahan komentar, penambahan alur cerita (*storyline*) pada permainan, serta penghapusan bagian kode yang tidak digunakan.                                                               | `Game.java`, `Grid.java`, `Player.java`                                                  |
 | 10 Desember 2025 | Penambahan sistem *Fog of War* menggunakan algoritma Depth-First Search (DFS) untuk membatasi area penglihatan pemain.                                                                                                    | `Game.java`, `Grid.java`                                                                 |
 | 11 Desember 2025 | Penyempurnaan sistem *Fog of War*, penambahan musik latar (*background music*), serta pembaruan visual tampilan player agar lebih jelas.                                                                                  | `Grid.java`, `Game.java`, `BackgroundMusic.java`, `src/sounds/6525273874497800630-c.wav` |
+| 12 Desember 2025 | Penyempurnaan lanjutan pada sistem *Fog of War* untuk meningkatkan kejelasan tampilan dan kenyamanan permainan.                                                                                                           | `Grid.java`                                                                              || Tanggal Update   | Deskripsi Update                                                                                                                                                                                                          | File / Class yang Diubah                                                                 |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| 28 November 2025 | Pembuatan dasar permainan meliputi peta labirin, pergerakan player, pergerakan monster menggunakan algoritma Breadth-First Search (BFS), serta penambahan sistem trap dengan efek *stun*.                                 | `Game.java`, `Grid.java`, `Monster.java`, `Player.java`, `Position.java`, `Trap.java`    |
+| 3 Desember 2025  | Perapian struktur kode agar lebih sederhana dan mudah dipahami, serta penambahan komentar pada kode untuk memudahkan pengembangan dan pemeliharaan lanjutan. Selain itu dilakukan perubahan tampilan antarmuka permainan. | `Position.java`, `Trap.java`, `Player.java`, `Monster.java`, `Grid.java`, `Game.java`    |
+| 4 Desember 2025  | Penyederhanaan kode lanjutan, penambahan komentar, penambahan alur cerita (*storyline*) pada permainan, serta penghapusan bagian kode yang tidak digunakan.                                                               | `Game.java`, `Grid.java`, `Player.java`                                                  |
+| 10 Desember 2025 | Penambahan sistem *Fog of War* menggunakan algoritma Depth-First Search (DFS) untuk membatasi area penglihatan pemain.                                                                                                    | `Game.java`, `Grid.java`                                                                 |
+| 11 Desember 2025 | Penyempurnaan sistem *Fog of War*, penambahan musik latar (*background music*), serta pembaruan visual tampilan player agar lebih jelas.                                                                                  | `Grid.java`, `Game.java`, `BackgroundMusic.java`, `src/sounds/6525273874497800630-c.wav` |
 | 12 Desember 2025 | Penyempurnaan lanjutan pada sistem *Fog of War* untuk meningkatkan kejelasan tampilan dan kenyamanan permainan.                                                                                                           | `Grid.java`                                                                              |
+| 14 Desember 2025 | Penyempurnaan Tampilan output, yaitu penambahan visual 'You Win' saat menang, 'Game Over' saat kalah, 'Welcome' di awal permainan, dan 'trap' ketika player menginjak trap.                                                                                                           | `Game.java`, `Grid.java`, `Monster.java`, `Player.java`, `Position.java`, `Trap.java`                                                                             |
+
 
 ## Daftar FP Kelompok Lain:
 D-1 : Word Rank Guesser Game
@@ -342,20 +354,20 @@ Link : https://github.com/dedyirama-id/kael-recommendation-system
 D-3 : Smart Traffic Light Simulator
 Link : https://github.com/Sudukk/FP_ASD_Traffic_Light_Simulation_FINAL
 
-D-4 :
-Link :
+D-4 : HotelSeek - Rekomendasi Pemilihan Hotel
+Link : https://github.com/dreadf/hotelseek
 
 D-5 :
 Link :
 
-D-6 :
-Link :
+D-6 : To-Do List
+Link : https://github.com/anggraitapr/ASDFPTODOLIST
 
-D-7 :
-Link :
+D-7 : Sistem Antrian IGD
+Link : https://github.com/WilliamHanantha/FP-ASD
 
-D-8 :
-Link :
+D-8 : Sistem Rekomendasi Jadwal Latihan dan Nutrisi Gym
+Link :https://github.com/tyr3x74/GymPlan
 
 D-9 : Sistem Rekomendasi Teman Berdasarkan Mutual Friends
 Link :https://github.com/mariaelvina/FinalProjectD9
@@ -366,10 +378,14 @@ Link : https://github.com/Aida41104/FPASD
 D-11 : Warehouse Management System
 Link : https://github.com/FasaBil/ASD-D11-Inventory-Management
 
-D-12 :
-Link :
+D-12 : Smart Traveling Planner
+Link : https://github.com/Dziky05/FP-ASD-KEL-13
 
-D-13 :
+D-13 : Sistem Manajemen Inventaris Gudang dan Optimasi Rute Pengiriman
+Link : https://github.com/FashaAsshofa/Final-Project-ASD-D-Kelompok-13
+
+D-14 : Rekomendasi Film berbasis Graph
+Link : https://github.com/neutralcheeze/final-project-asd.git
 Link :
 
 D-14 : Rekomendasi Film berbasis Graph
