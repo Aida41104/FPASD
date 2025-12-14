@@ -178,23 +178,23 @@ Pada bagian ini ditampilkan beberapa tangkapan layar (screenshot) dari game Mons
 2. Gerakan Player (W/A/S/D)
    Player dapat bergerak dengan input W untuk ke atas, A untuk ke kiri, S untuk ke bawah, D untuk ke kanan
 
-   Player input W untuk ke atas:
+   Player input W untuk ke atas:  
    <img width="366" height="638" alt="image(31)" src="https://github.com/user-attachments/assets/ab8a23ae-7aff-4866-80d3-117bf8783c17" />  
 
 
-   Player input A untuk ke kiri:
+   Player input A untuk ke kiri:  
    <img width="398" height="665" alt="image(30)" src="https://github.com/user-attachments/assets/9fdc5351-9981-48f5-8666-6f4772db8aa0" />  
 
-   Player input S untuk ke bawah:
+   Player input S untuk ke bawah:  
    <img width="727" height="385" alt="image(26)" src="https://github.com/user-attachments/assets/bf32241a-a948-4c9f-bce1-fe9e0da42174" />  
    <img width="620" height="431" alt="image(27)" src="https://github.com/user-attachments/assets/e229d666-443a-4933-a451-cd9a64b5df6f" />
 
-   Player input D untuk ke kanan:
+   Player input D untuk ke kanan:  
    <img width="631" height="404" alt="image(28)" src="https://github.com/user-attachments/assets/b87d5be5-b749-4d53-9fbd-f8ca85c62b33" />
    <img width="579" height="387" alt="image(29)" src="https://github.com/user-attachments/assets/1d121c79-a725-4cd6-b690-d66da815454f" />
 
 3. Monster Mengejar Player dengan BFS  
-   Monster (merah) bergerak menuju player (biru) sebanyak 1 langkah per turn dengan menggunakan BFS agar dapat berjalan mengikuti jalur terdekat menuju player.
+   Monster (merah) bergerak menuju player (biru) sebanyak 1 langkah per turn dengan menggunakan BFS agar dapat berjalan mengikuti jalur terdekat menuju player.  
    <img width="473" height="630" alt="image(32)" src="https://github.com/user-attachments/assets/0a60ae81-5ec7-4726-9867-621edf26c6a9" />  
 
 4. Sistem Fog  
@@ -246,4 +246,47 @@ Pada bagian ini ditampilkan beberapa tangkapan layar (screenshot) dari game Mons
     Berikut ketika kondisi menang, yaitu ketika player berhasil menyentuh koordinat finish tanpa tertangkap monster dan ditandai dengan output 'You Win' sebagia tanda kemenangan:  
     
    <img width="609" height="521" alt="image(18)" src="https://github.com/user-attachments/assets/539448cc-d4e3-45d0-8998-723034a10c6a" />
+
+## Daftar FP Kelompok Lain:
+D-1 : Word Rank Guesser Game
+Link : https://github.com/NashiwaInsan/asdfinalproject
+
+D-2 : Sistem Rekomendasi Event Berbasis Graph
+Link : https://github.com/dedyirama-id/kael-recommendation-system
+
+D-3 : Smart Traffic Light Simulator
+Link : https://github.com/Sudukk/FP_ASD_Traffic_Light_Simulation_FINAL
+
+D-4 :
+Link :
+
+D-5 :
+Link :
+
+D-6 :
+Link :
+
+D-7 :
+Link :
+
+D-8 :
+Link :
+
+D-9 : Sistem Rekomendasi Teman Berdasarkan Mutual Friends
+Link :https://github.com/mariaelvina/FinalProjectD9
+
+D-10 : Monster Chase
+Link : https://github.com/Aida41104/FPASD
+
+D-11 : Warehouse Management System
+Link : https://github.com/FasaBil/ASD-D11-Inventory-Management
+
+D-12 :
+Link :
+
+D-13 :
+Link :
+
+D-14 : Rekomendasi Film berbasis Graph
+Link : https://github.com/neutralcheeze/final-project-asd.git
 
