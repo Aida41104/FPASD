@@ -171,16 +171,48 @@ Struktur file pada proyek Monster Chase disusun secara modular untuk memisahkan 
 Pada bagian ini ditampilkan beberapa tangkapan layar (screenshot) dari game Monster Chase untuk memberikan gambaran visual mengenai tampilan dan mekanisme permainan. Screenshot disertakan sebagai ilustrasi pendukung dan tidak ditampilkan secara berlebihan.  
 
 1. Tampilan Awal Permainan
-   <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/3688ecc2-b9e4-44da-a5f4-e32ee18d904a" />
+   Ini adalah tampilan awal saat kita run, yaitu menampilkan story beserta tampilan awal map dengan player ditandai dengan warna biru dan digerakkan dengan input W/A/S/D sebanyak 1 kali per turn, monster dengan warna merah, dan tembok berwarna ungu yang tak dapat dilewati oleh player  
+   <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/3688ecc2-b9e4-44da-a5f4-e32ee18d904a" />  
    <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/007adeca-a0f9-42a2-b43e-e1b397ea0a45" />  
+   
 2. Sistem Fog
-   <img width="620" height="474" alt="image(14)" src="https://github.com/user-attachments/assets/a0d78cfb-85d1-47a4-a89c-b7ee23180cf9" />
-3. Monster Mengejar Player dengan BFS
+   Pada saat tertentu, player tidak bisa melihat keseluruhan labirin (hanya area dekat dirinya yang terlihat, yaitu 5 tile di sekitar player dan tidak menembus tembok). Kabut akan hilang di setiap kelipatam 5 turn dan akan muncul lagi di turn selanjutnya. Area berwarna lebih gelap merupakan posisi monster sebagai hint keberadaan monster.
+
+   Map akan seluruhnya terlihat pada pertama kali dirender:
+   
+   <img width="946" height="641" alt="image(23)" src="https://github.com/user-attachments/assets/48014679-95f2-4c07-a038-947d69f82c54" />
+
+   Lalu Map akan tertutup dengan fog:
+
+   <img width="630" height="384" alt="image(24)" src="https://github.com/user-attachments/assets/d8c5c6c5-05b5-428b-80cb-8df6cb55aff2" />
+
+   Map terbuka kembali/ fog menghilang setip turn kelipatan 5:
+
+   <img width="693" height="424" alt="image(25)" src="https://github.com/user-attachments/assets/d41dad36-ea84-40b7-876b-205b31c8a881" />
+   
+4. Monster Mengejar Player dengan BFS
+   Monster bergerak menuju player sebanyak 1 langkah per turn dengan menggunakan BFS agar dapat berjalan mengikuti jalur terdekat menuju player.  
    <img width="569" height="439" alt="image(16)" src="https://github.com/user-attachments/assets/d032463f-c05f-4db4-811e-c5b8dc833220" />
-4. Trap Berisi Pertanyaan
+   
+5. Trap Berisi Pertanyaan  
+   Saat player menginjak trap, maka player diwajibkan untuk menjawan pertanyaan dengan pilihan y/n, y untuk yes/ benar, n untuk no/ salah.  
    <img width="1030" height="444" alt="image(15)" src="https://github.com/user-attachments/assets/d8950a91-4255-46f8-ba7d-1de1edcbd03c" />
-5. Kondisi Kalah
+
+6. Kondisi Menjawab Trap Benar
+   Ketika player menjawab trap dengan benar, maka player tidak akan mengalami apapun/ tidak mendapat penalti.
+   Berikut ketika menginjak trap:
+   
+   <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/6c47c689-5a44-451f-ae33-f00d683bcbf7" />
+
+   Berikut merupakan input untuk bergerak:  
+   
+   <img width="608" height="407" alt="image(21)" src="https://github.com/user-attachments/assets/ef3d47f2-3585-431f-b4f8-aadced40ece9" />
+
+   Player tetap dapat bergerak:
+   <img width="549" height="387" alt="image(22)" src="https://github.com/user-attachments/assets/cfdf03f2-c87e-40ea-9c12-6fb4e681e5e0" />  
+   
+7. Kondisi Kalah
    <img width="691" height="563" alt="image(17)" src="https://github.com/user-attachments/assets/902b86a1-a98a-4879-b264-cb28c6db9d9c" />
-6. Kondisi Menang
+8. Kondisi Menang
    <img width="609" height="521" alt="image(18)" src="https://github.com/user-attachments/assets/539448cc-d4e3-45d0-8998-723034a10c6a" />
 
