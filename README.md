@@ -155,6 +155,7 @@ Dalam pengembangan game Monster Chase, beberapa struktur data digunakan untuk me
    Implementasi pada Kode: List<String[]> questionBank, Random  
 
 ## Struktur File Penting  
+Struktur file pada proyek Monster Chase disusun secara modular untuk memisahkan fungsi dan tanggung jawab setiap komponen, sehingga memudahkan pengembangan, pemeliharaan, dan pemahaman alur program. Berikut adalah file-file utama beserta fungsinya:
 
 | No | Nama File | Deskripsi |
 |----|-----------|-----------|
