@@ -15,6 +15,14 @@ public class Game {
         boolean ready = false;
 
         if(!storyShown){
+
+            System.out.println();
+            System.out.println(" ██     ██ ███████ ██      ██████   ██████  ███    ███ ███████ ");
+            System.out.println(" ██     ██ ██      ██     ██       ██    ██ ████  ████ ██      ");
+            System.out.println(" ██  █  ██ █████   ██     ██       ██    ██ ██ ████ ██ █████   ");
+            System.out.println(" ██ ███ ██ ██      ██     ██       ██    ██ ██  ██  ██ ██      ");
+            System.out.println("  ███ ███  ███████ ███████ ██████   ██████  ██      ██ ███████ ");
+            System.out.println();
             System.out.println("\n \nDr. Arkam dulunya adalah ilmuwan jenius yang terobsesi menciptakan “otak sempurna”.\n" +
                     "Ia percaya bahwa kecerdasan manusia terlalu mudah rapuh, terlalu emosional, dan terlalu mudah salah.\n" +
                     "Karena itu, ia membangun Labirin Pengetahuan—tempat untuk menguji kecerdasan seseorang.\n" +
@@ -44,10 +52,27 @@ public class Game {
             }
 
             if(player.pos.equals(new Position(14,13))){ //koordinat finish
+
+                System.out.println();
+                System.out.println(" ██    ██  ██████  ██    ██     ██     ██ ██ ███    ██ ");
+                System.out.println("  ██  ██  ██    ██ ██    ██     ██     ██ ██ ████   ██ ");
+                System.out.println("   ████   ██    ██ ██    ██     ██  █  ██ ██ ██ ██  ██ ");
+                System.out.println("    ██    ██    ██ ██    ██     ██ ███ ██ ██ ██  ██ ██ ");
+                System.out.println("    ██     ██████   ██████       ███ ███  ██ ██   ████ ");
+                System.out.println();
                 System.out.println("YOU WIN!!!!!!! \nDr. Arkam: \"Selamat otakmu layak untuk hidupd!\"");
                 break;
             }
+
             if(player.pos.equals(monster.pos)){
+
+                System.out.println();
+                System.out.println("  ██████   █████  ███    ███ ███████      ██████  ██    ██ ███████ ██████  ");
+                System.out.println(" ██       ██   ██ ████  ████ ██          ██    ██ ██    ██ ██      ██   ██ ");
+                System.out.println(" ██   ███ ███████ ██ ████ ██ █████       ██    ██ ██    ██ █████   ██████  ");
+                System.out.println(" ██    ██ ██   ██ ██  ██  ██ ██          ██    ██  ██  ██  ██      ██   ██ ");
+                System.out.println("  ██████  ██   ██ ██      ██ ███████      ██████    ████   ███████ ██   ██ ");
+                System.out.println();
                 System.out.println("GAME OVER!!\nDr. Arkam: \"Seharusnya kau tahu...\"\n" +
                         "Dr. Arkam: \"Hanya otak yang layak yang bisa bertahan.\"\n" +
                         "Dr. Arkam: \"Sisanya akan disantap oleh monsterku.\"");

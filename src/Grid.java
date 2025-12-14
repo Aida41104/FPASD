@@ -233,6 +233,13 @@ class Grid {
             Position trap = activeTraps.get(i);
 
             if(trap.equals(player.pos)) { // kalau player menginjak posisi trap
+                System.out.println();
+                System.out.println(" ████████ ██████   █████  ██████   ██   ██ ");
+                System.out.println("    ██    ██   ██ ██   ██ ██   ██  ██   ██ ");
+                System.out.println("    ██    ██████  ███████ ██████   ██   ██ ");
+                System.out.println("    ██    ██   ██ ██   ██ ██            ");
+                System.out.println("    ██    ██   ██ ██   ██ ██        ██   ██ ");
+                System.out.println();
                 activeTraps.remove(i); //visual trap
                 Trap t = trapQuestions.remove(trap);//apus trap n Q nya biar dirimu ga kena pertanyaan terus
                 System.out.println("Dr. Arkam: \"Jawab ini, jika otakmu masih berfungsi...\"\nTrap Question: " + t.question);
