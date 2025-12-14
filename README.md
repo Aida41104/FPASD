@@ -16,6 +16,8 @@ Kelompok: 10
 | 3  | Ghanendra Dzakwan Wiradikusumah  | 5026241127 |
 | 4  | Candleline audrina firsta  | 5026221159 |
 
+Link Demo: https://www.youtube.com/watch?v=JreG7UPnVmg
+
 ## Latar Belakang
 
 Algoritma dan Struktur Data merupakan salah satu mata kuliah fundamental dalam bidang ilmu komputer yang menuntut kemampuan berpikir logis, terstruktur, dan analitis. Namun, banyak mahasiswa mengalami kesulitan memahami materi Algoritma & Struktur Data karena penyajiannya cenderung abstrak, monoton, dan minim contoh interaktif sehingga konsep seperti graph, sorting, dan tree sering terasa sulit untuk dipahami. Hal ini menyebabkan proses pembelajaran menjadi kurang menarik dan cenderung monoton.
@@ -329,7 +331,6 @@ Pada bagian ini ditampilkan beberapa tangkapan layar (screenshot) dari game Mons
 | 10 Desember 2025 | Penambahan sistem *Fog of War* menggunakan algoritma Depth-First Search (DFS) untuk membatasi area penglihatan pemain.                                                                                                    | `Game.java`, `Grid.java`                                                                 |
 | 11 Desember 2025 | Penyempurnaan sistem *Fog of War*, penambahan musik latar (*background music*), serta pembaruan visual tampilan player agar lebih jelas.                                                                                  | `Grid.java`, `Game.java`, `BackgroundMusic.java`, `src/sounds/6525273874497800630-c.wav` |
 | 12 Desember 2025 | Penyempurnaan lanjutan pada sistem *Fog of War* untuk meningkatkan kejelasan tampilan dan kenyamanan permainan.                                                                                                           | `Grid.java`                                                                              |
-
 
 ## Daftar FP Kelompok Lain:
 D-1 : Word Rank Guesser Game
