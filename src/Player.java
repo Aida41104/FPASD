@@ -1,48 +1,49 @@
 import java.util.*;
+
 class Player {
     Position pos;
-    boolean skipTurn; //klo false= player boleh gerak
+    boolean skipTurn;
 
-    Player(int x, int y){
-        pos = new Position(x,y);
+    // Constructor: menentukan posisi awal player dan status giliran
+    Player(int x, int y) {
+        pos = new Position(x, y);
         skipTurn = false;
-    } //new Player(x,y), belum kena trap jadi g ad skipturn
+    }
 
+    // Mengatur pergerakan player berdasarkan input keyboard (W/A/S/D)
+    public void move(Grid grid) {
 
-    public void move(Grid grid){
-        if(skipTurn){ //klo salah jawab trap bakal skip turn
+        // Jika player terkena trap, ia kehilangan satu giliran
+        if (skipTurn) {
             System.out.println("Dr. Arkam: \"Salah!! Tampaknya otakmu membeku! Kau kehilangan satu giliran.\"");
             skipTurn = false;
             return;
         }
 
-        Scanner sc = new Scanner(System.in); //input: keyboard
+        // Membaca input pergerakan dari pemain
+        Scanner sc = new Scanner(System.in);
         System.out.print("Move (W/A/S/D): ");
         String input = sc.nextLine().toLowerCase();
 
-        int nx = pos.x, ny = pos.y;
-        //grid[0][0]  grid[0][1]  grid[0][2]
-        //grid[1][0]  grid[1][1]  grid[1][2]
-        //grid[2][0]  grid[2][1]  grid[2][2]
-        if(input.equals("w")) {
+        int nx = pos.x;
+        int ny = pos.y;
+
+        // Menentukan arah gerak berdasarkan input
+        if (input.equals("w")) {
             nx--;
-        }
-        else if(input.equals("s")) {
+        } else if (input.equals("s")) {
             nx++;
-        }
-        else if(input.equals("a")) {
+        } else if (input.equals("a")) {
             ny--;
-        }
-        else if(input.equals("d")) {
+        } else if (input.equals("d")) {
             ny++;
-        }
-        else {
+        } else {
             System.out.println("Invalid move!");
             return;
-
         }
 
-        if(grid.isWalkable(nx, ny)) { //bukan tembok dan masih dalam batas map = true, pindah posisi
+        // Mengecek apakah tujuan dapat dilewati sebelum memindahkan player
+        if (grid.isWalkable(nx, ny)) {
             pos.x = nx;
             pos.y = ny;
         }
